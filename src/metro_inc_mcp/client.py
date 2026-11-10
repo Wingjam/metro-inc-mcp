@@ -6,11 +6,12 @@ import asyncio
 import logging
 import time
 from typing import Any
+from urllib.parse import urlparse
 
 from curl_cffi.requests import AsyncSession, Response
 
 from .config import Settings
-from .errors import CloudflareBlocked, RateLimited, UpstreamError
+from .errors import CloudflareBlocked, RateLimited, SiteMaintenance, UpstreamError
 
 log = logging.getLogger(__name__)
 
@@ -20,6 +21,11 @@ AJAX_HEADERS = {
 }
 RETRY_DELAYS_429 = (30.0, 60.0)
 CACHE_TTL = 300.0
+
+
+def is_maintenance_url(url: str) -> bool:
+    """During maintenance every path answers 302 to http://maintenance.metro.ca/ (seen on metro.ca 2026-11-09)."""
+    return (urlparse(url).hostname or "").startswith("maintenance.")
 
 
 class GroceryClient:
@@ -61,6 +67,8 @@ class GroceryClient:
                 await asyncio.sleep(RETRY_DELAYS_429[attempt])
         if resp.headers.get("cf-mitigated") == "challenge":
             raise CloudflareBlocked(self.site)
+        if is_maintenance_url(str(resp.url)) or is_maintenance_url(resp.headers.get("location") or ""):
+            raise SiteMaintenance(self.site)
         return resp
 
     async def get_text(self, path: str, *, params: dict[str, str] | None = None, cache: bool = False,

@@ -61,6 +61,18 @@ def parse_line(card: LexborNode) -> CartLine:
     )
 
 
+def parse_csrf(html: str) -> dict[str, str]:
+    """CSRF header for calls that need one, from <meta name="_csrf" content="<uuid>"> and
+    <meta name="_csrf_header" content="X-CSRF-TOKEN">. Metro has them; Super C and Jean Coutu do not ({})."""
+    tree = LexborHTMLParser(html)
+    token = tree.css_first('meta[name="_csrf"]')
+    value = token.attributes.get("content") if token else None
+    if not value:
+        return {}
+    header = tree.css_first('meta[name="_csrf_header"]')
+    return {(header.attributes.get("content") if header else None) or "X-CSRF-TOKEN": value}
+
+
 def parse_cart_page(html: str, language: str = "fr") -> Cart:
     tree = LexborHTMLParser(html)
     lines: dict[int, CartLine] = {}

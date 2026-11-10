@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 
+from metro_inc_mcp.client import is_maintenance_url
 from metro_inc_mcp.config import BANNERS, Settings
 from metro_inc_mcp.parsing.products import parse_autocomplete
 
@@ -57,6 +58,17 @@ def test_foodbasics_is_english_only(monkeypatch):
     assert s.resolve_language("fr") == "en"
     assert s.paths("fr").search == "/search"
     assert s.write_paths.cart == "/my-cart"
+
+
+@pytest.mark.parametrize(("url", "expected"), [
+    ("http://maintenance.metro.ca/", True),
+    ("https://maintenance.superc.ca/page", True),
+    ("https://www.metro.ca/mon-panier", False),
+    ("https://auth.moiid.ca/tfp/x/b2c_1a_susi/oauth2/v2.0/authorize", False),
+    ("", False),
+])
+def test_is_maintenance_url(url, expected):
+    assert is_maintenance_url(url) is expected
 
 
 def test_every_banner_has_https_base_url():

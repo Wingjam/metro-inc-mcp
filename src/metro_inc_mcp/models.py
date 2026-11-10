@@ -101,6 +101,13 @@ class RemoveResult(BaseModel):
     cart_empty: bool | None = None
 
 
+class ClearCartResult(BaseModel):
+    removed: list[CartItem] = Field(description="What was in the cart: pass it to add_to_cart to put it back")
+    removed_names: dict[str, str] = Field(default_factory=dict, description="Product name by code, for the user")
+    item_count: int | None = Field(None, description="Items left in the cart (0 when it worked)")
+    cart_empty: bool
+
+
 class Store(BaseModel):
     store_id: str = Field(description="Store id to pass to get_timeslots / set_pickup_store")
     name: str
@@ -144,6 +151,7 @@ class ServiceContext(BaseModel):
     store_name: str | None = None
     store_address: str | None = None
     timeslot_selected: bool | None = None
+    timeslot: str | None = Field(None, description="Booked pickup timeslot as displayed, e.g. 'Demain à 13h-14h'")
 
 
 class SetStoreResult(BaseModel):
@@ -152,6 +160,18 @@ class SetStoreResult(BaseModel):
     service_type: str | None = None
     store_changed: bool | None = None
     timeslot: str | None = Field(None, description="Timeslot shown by the site after the change")
+
+
+class BookTimeslotResult(BaseModel):
+    booked: bool = Field(description="False: preview only, nothing was sent (call again with confirm=true)")
+    store_id: str
+    store_name: str | None = None
+    slot: Timeslot
+    current_store_id: str | None = Field(None, description="Pickup store of the cart before this call")
+    current_timeslot: str | None = Field(None, description="Timeslot already booked before this call (replaced)")
+    changes_store: bool | None = Field(None, description="True: booking also moves the cart to this store")
+    timeslot: str | None = Field(None, description="Timeslot shown by the site after booking")
+    note: str | None = None
 
 
 class QuickSearchResult(BaseModel):

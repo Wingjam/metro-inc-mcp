@@ -19,8 +19,10 @@ from .config import Language, Settings
 from .errors import GroceryError
 from .models import (
     AddToCartResult,
+    BookTimeslotResult,
     Cart,
     CartItem,
+    ClearCartResult,
     QuickSearchResult,
     RemoveResult,
     SearchResult,
@@ -51,6 +53,12 @@ _KIND_HINT = (
     "Pickup has no timeslot." if _BANNER.kind == "pharmacy" else ""
 )
 
+_TIMESLOT_HINT = (
+    "- get_timeslots lists pickup times. book_timeslot reserves one: call it with confirm=false first, show the\n"
+    "  preview to the user, and use confirm=true only after they agree."
+    if _BANNER.pickup_timeslots else "- Pickup has no timeslot: the order is ready for pickup when prepared."
+)
+
 INSTRUCTIONS = f"""\
 Unofficial access to the {_BANNER.name} ({_SITE}) {_BANNER.kind} website, on the user's own account.
 {_BANNER.name} is a Metro inc. banner; this server handles only this banner and its cart.
@@ -59,10 +67,11 @@ Unofficial access to the {_BANNER.name} ({_SITE}) {_BANNER.kind} website, on the
 - Use quick_search to find one specific product (fast, top 3 results with prices).
 - Use search_products to browse or compare (about 42 products per page).
 - Cart tools use product codes from search results. add_to_cart takes several products at once.
+- clear_cart empties the whole cart in one call: confirm with the user first. It returns what was removed.
 - Products sold by weight (is_weighted / approximate) are added by count (units or trays); the price is an estimate.
 - view_cart shows the pickup store. If an add fails because no store is chosen, use find_stores then
   set_pickup_store (ask the user first: it changes the store for the whole cart, which can change prices).
-- get_timeslots only reads available pickup times; booking a timeslot is not supported yet.
+{_TIMESLOT_HINT}
 - Checkout and payment are not supported: the user completes the order on {_SITE}.
 """
 
@@ -186,6 +195,19 @@ async def remove_from_cart(product_code: ProductCode) -> RemoveResult:
         raise ToolError(str(e)) from e
 
 
+@mcp.tool(annotations=DESTRUCTIVE)
+async def clear_cart() -> ClearCartResult:
+    """Remove every product from the cart in one call (the site's 'Vider mon panier' button).
+
+    The pickup store and any booked timeslot stay. Confirm with the user before calling it. The result lists
+    what was removed; pass `removed` to add_to_cart to put it back.
+    """
+    try:
+        return await get_cart().clear()
+    except GroceryError as e:
+        raise ToolError(str(e)) from e
+
+
 @mcp.tool(annotations=READ_ONLY)
 async def find_stores(postal_code: PostalCode, language: Lang = None) -> StoreList:
     """List the banner's stores offering pickup near a postal code, nearest first."""
@@ -208,13 +230,38 @@ async def get_timeslots(store_id: StoreId, postal_code: PostalCode, language: La
 async def set_pickup_store(store_id: StoreId, postal_code: PostalCode) -> SetStoreResult:
     """Choose the pickup store for the user's cart, without booking a timeslot.
 
-    This changes the store for the whole cart: assortment and prices follow that store.
-    Confirm with the user before calling it.
+    This changes the store for the whole cart: assortment and prices follow that store. It also removes
+    a booked timeslot, even when the store stays the same. Confirm with the user before calling it.
     """
     try:
         return await get_service().set_pickup_store(store_id, postal_code)
     except GroceryError as e:
         raise ToolError(str(e)) from e
+
+
+if _BANNER.pickup_timeslots:
+
+    @mcp.tool(annotations=WRITE)
+    async def book_timeslot(
+        store_id: StoreId,
+        postal_code: PostalCode,
+        slot_id: Annotated[str, Field(description="slot_id from get_timeslots, e.g. '1370977061'")],
+        confirm: Annotated[bool, Field(description="false: preview only. true: book the slot (after the user agreed)")]
+        = False,
+    ) -> BookTimeslotResult:
+        """Book a pickup timeslot for the user's cart. This reserves real store capacity.
+
+        Call it first with confirm=false: it books nothing and returns the slot, its fee and whether the cart's
+        store would change. Show that to the user, and call again with confirm=true only after they agree.
+        Booking a slot at another store also moves the whole cart to that store. A new booking replaces the
+        previous one. The site holds the slot for 2 hours: book it just before the user places the order on the
+        website. To cancel a booking, call set_pickup_store with the same store (it keeps the store and removes
+        the timeslot).
+        """
+        try:
+            return await get_service().book_timeslot(store_id, postal_code, slot_id, confirm)
+        except GroceryError as e:
+            raise ToolError(str(e)) from e
 
 
 def run() -> None:

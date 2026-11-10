@@ -1,6 +1,6 @@
 [project]
 name = "metro-inc-mcp"
-version = "0.2.0"
+version = "0.3.0"
 description = "Unofficial MCP server for Metro inc. banners (Super C, Metro, Food Basics, Jean Coutu). Not affiliated with METRO inc."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -26,10 +26,15 @@ build-backend = "hatchling.build"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[tool.ruff]
+# Default rule set of the ruff version pinned in the dev group (target version comes from requires-python).
+line-length = 120
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/metro_inc_mcp"]
 
 [dependency-groups]
 dev = [
     "pytest>=9.2.0",
+    "ruff>=0.17.4,<0.18",
 ]

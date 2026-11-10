@@ -4,6 +4,7 @@ import pytest
 
 from metro_inc_mcp.cart import InvalidProductCode, _check_code
 from metro_inc_mcp.parsing.service import (
+    find_pickup_slot,
     parse_form_state,
     parse_pickup_days,
     parse_pickup_point,
@@ -56,6 +57,16 @@ def test_pickup_days(page, lang, today, tomorrow, slot_label, price_text):
     assert (slot.slot_id, slot.start, slot.end) == ("15683441", "2026-11-09T12:00-05:00", "2026-11-09T13:00-05:00")
     assert (slot.label, slot.price, slot.price_text, slot.available) == (slot_label, Decimal(0), price_text, True)
     assert all(s.start.startswith(d.date) for d in days for s in d.slots)
+
+
+@pytest.mark.parametrize("lang", ["fr", "en"])
+def test_find_pickup_slot(page, lang):
+    html = page(f"service-timeslot-{lang}.html")
+    slot, slot_store_id = find_pickup_slot(html, "274", "15683441")
+    assert (slot.start, slot.end, slot.available) == ("2026-11-09T12:00-05:00", "2026-11-09T13:00-05:00", True)
+    assert slot_store_id == "0000000429"  # the e-commerce id, sent as slotStoreId
+    assert find_pickup_slot(html, "274", "999") is None
+    assert find_pickup_slot(html, "6167", "15683441") is None  # slots belong to one store
 
 
 def test_pickup_days_other_store_has_no_slots(page):

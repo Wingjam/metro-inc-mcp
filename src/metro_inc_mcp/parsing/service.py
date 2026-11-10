@@ -80,6 +80,17 @@ def _slot(radio: LexborNode) -> Timeslot:
     )
 
 
+def find_pickup_slot(html: str, store_id: str, slot_id: str) -> tuple[Timeslot, str | None] | None:
+    """(slot, slot-store-id) for one pickup slot radio of a store in service-timeslot, or None."""
+    container = LexborHTMLParser(html).css_first(f'.timeslotPickupContainer[data-store-id="{store_id}"]')
+    if container is None:
+        return None
+    for radio in container.css(f'input[type=radio][name="select-timeslot-{PICKUP}"]'):
+        if radio.attributes.get("slot-id") == slot_id:
+            return _slot(radio), radio.attributes.get("slot-store-id")
+    return None
+
+
 def parse_pickup_days(html: str, store_id: str) -> list[Day]:
     """Days (with status) and pickup slots of one store from service-timeslot."""
     tree = LexborHTMLParser(html)
@@ -107,10 +118,21 @@ _CART_WITHOUT_SLOT = re.compile(r"var cartWithoutTimeslot = (true|false);")
 _SERVICE_TYPE_VAR = re.compile(r'var serviceType = "(\w*)";')
 
 
-def _header_pickup_context(tree: LexborHTMLParser, html: str) -> ServiceContext | None:
-    """Jean Coutu: the cart page has no current-store input, only `var serviceType` and the store name in the header.
+def _header_timeslot(tree: LexborHTMLParser) -> str | None:
+    """Booked slot from the header, e.g. 'Demain à 13h-14h'. None when no slot is booked."""
+    hour = tree.css_first(".openStoreLocatorTimeslotValue.timeslotHour")
+    hour_text = clean_text(hour.text()) if hour else None
+    if not hour_text:
+        return None
+    day = tree.css_first(".openStoreLocatorTimeslotValue.timeslotDescription")
+    return clean_text(" ".join(filter(None, [clean_text(day.text()) if day else None, hour_text])))
 
-    No store id or address is shown there, and pickup has no timeslot.
+
+def _header_pickup_context(tree: LexborHTMLParser, html: str) -> ServiceContext | None:
+    """Pickup context from `var serviceType` and the page header, when there is no current-store input.
+
+    Jean Coutu never has that input; grocery banners drop it once a timeslot is booked (verified on
+    Super C 2026-11-09). The header shows the store name (no id or address) and the booked slot.
     """
     m = _SERVICE_TYPE_VAR.search(html)
     if not m or m.group(1) != "pickup":
@@ -119,7 +141,11 @@ def _header_pickup_context(tree: LexborHTMLParser, html: str) -> ServiceContext 
     name = clean_text(node.text()) if node else None
     if not name or name == "null":
         return None
-    return ServiceContext(service_type="PICK_UP_IN_STORE", store_name=name)
+    slot = _header_timeslot(tree)
+    without = _CART_WITHOUT_SLOT.search(html)
+    selected = True if slot else (False if without and without.group(1) == "true" else None)
+    return ServiceContext(service_type="PICK_UP_IN_STORE", store_name=name, timeslot_selected=selected,
+                          timeslot=slot)
 
 
 def parse_service_context(html: str) -> ServiceContext | None:
@@ -136,4 +162,5 @@ def parse_service_context(html: str) -> ServiceContext | None:
         store_name=clean_text(a.get("data-store-name")),
         store_address=clean_text(a.get("data-store-address")),
         timeslot_selected=(m.group(1) == "false") if m else None,
+        timeslot=_header_timeslot(tree),
     )

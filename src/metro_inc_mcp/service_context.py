@@ -7,15 +7,29 @@ import logging
 import re
 import time
 
-from .auth import AuthManager
+from .auth import AuthManager, page_is_authenticated
 from .client import GroceryClient
 from .config import Language
-from .errors import CaptchaRequired, GroceryError, StoreNotFound, UpstreamError
-from .models import SetStoreResult, StoreList, TimeslotList
+from .errors import (
+    AuthExpired,
+    CaptchaRequired,
+    GroceryError,
+    StoreNotFound,
+    UpstreamError,
+)
+from .models import (
+    BookTimeslotResult,
+    ServiceContext,
+    SetStoreResult,
+    StoreList,
+    TimeslotList,
+)
 from .parsing.service import (
+    find_pickup_slot,
     parse_form_state,
     parse_pickup_days,
     parse_pickup_point,
+    parse_service_context,
     parse_store_list,
 )
 
@@ -27,6 +41,12 @@ _STORE_ID = re.compile(r"^\d{1,8}$")
 
 class InvalidInput(GroceryError):
     pass
+
+
+class SlotNotAvailable(GroceryError):
+    def __init__(self, slot_id: str, store_id: str) -> None:
+        super().__init__(f"Timeslot {slot_id} is not offered or no longer available at store {store_id}. "
+                         "Call get_timeslots again and pick another slot.")
 
 
 def normalize_postal_code(value: str) -> str:
@@ -118,3 +138,89 @@ class ServiceContextService:
             store_changed=(h["cartstorehaschanged"] == "true") if "cartstorehaschanged" in h else None,
             timeslot=h.get("updateheadertimeslot"),
         )
+
+    async def _current_context(self) -> ServiceContext | None:
+        """Service context of the account cart (pickup store, timeslot flag), with one re-login if needed."""
+        await self.auth.ensure_logged_in()
+        cart_path = self.client.settings.write_paths.cart
+        html = await self.client.get_text(cart_path)
+        if page_is_authenticated(html) is False:
+            self.auth.mark_logged_out()
+            await self.auth.ensure_logged_in()
+            html = await self.client.get_text(cart_path)
+            if page_is_authenticated(html) is False:
+                raise AuthExpired()
+        return parse_service_context(html)
+
+    async def book_timeslot(self, store_id: str, postal_code: str, slot_id: str,
+                            confirm: bool = False) -> BookTimeslotResult:
+        """Book a pickup timeslot for the cart (POST store-timeslot). Without confirm, only a preview."""
+        banner = self.client.settings.banner
+        if not banner.pickup_timeslots:
+            raise InvalidInput(f"{banner.name} pickup has no timeslot to book: the order is picked up when ready.")
+        store_id = _check_store_id(store_id)
+        postal = normalize_postal_code(postal_code)
+        slot_id = (slot_id or "").strip()
+        if not slot_id.isdigit():
+            raise InvalidInput(f"{slot_id!r} is not a slot id (digits). Use get_timeslots to get one.")
+        current = await self._current_context()
+        write_lang = banner.primary_language
+        html = await self._timeslot_page(store_id, postal, write_lang)
+        point, name = parse_pickup_point(html, store_id)
+        if point is None:
+            raise StoreNotFound(store_id, postal)
+        found = find_pickup_slot(html, store_id, slot_id)
+        if found is None or not found[0].available:
+            raise SlotNotAvailable(slot_id, store_id)
+        slot, slot_store_id = found
+        current_id = current.store_id if current else None
+        if current_id:
+            changes_store = current_id != store_id
+        elif current and current.store_name and name:  # a booked cart page shows only the store name
+            changes_store = current.store_name != name
+        else:
+            changes_store = None
+        result = BookTimeslotResult(
+            booked=False, store_id=store_id, store_name=name, slot=slot, current_store_id=current_id,
+            current_timeslot=current.timeslot if current else None, changes_store=changes_store,
+        )
+        if not confirm:
+            result.note = ("Preview only, nothing was booked. Show this to the user and call again with "
+                           "confirm=true once they agree. Once booked, the site holds the slot for 2 hours.")
+            return result
+
+        payload = {
+            "serviceType": "PICK_UP_IN_STORE",
+            "storeId": store_id,
+            "deliveryPostalCode": postal.replace(" ", ""),
+            "servicePointId": point,
+            "formStateId": parse_form_state(html),
+            "slot": slot_id,
+            "slotStoreId": slot_store_id or point,
+            "slotFrom": slot.start,
+            "slotTo": slot.end,
+            "inCheckoutPage": False,
+        }
+        path = f"{self._prefix(write_lang)}/store-timeslot"
+        resp = await self.client.request("POST", path, ajax=True,
+                                         headers={"Content-Type": "application/json", "Accept": "text/html, */*; q=0.01"},
+                                         data=json.dumps(payload))
+        h = {k.lower(): v for k, v in resp.headers.items()}
+        if h.get("recaptchafailed") == "true":
+            raise CaptchaRequired(self.client.site)
+        if h.get("timesloterror") == "true":
+            raise SlotNotAvailable(slot_id, store_id)
+        if resp.status_code != 200:
+            raise UpstreamError(resp.status_code, path)
+        log.info("timeslot %s booked at store %s", slot_id, store_id)
+        result.booked = True
+        result.store_name = h.get("updateheaderstore") or name
+        result.timeslot = h.get("updateheadertimeslot")
+        after = await self._current_context()
+        if after is None or after.timeslot_selected is not True:
+            result.note = "The site answered 200 but the cart does not show a timeslot yet: check view_cart."
+        else:
+            # Cart page text once a slot is booked: "Votre plage horaire est réservée pour les 2 prochaines heures."
+            result.note = ("The site holds this slot for 2 hours: the user should place the order on "
+                           f"{self.client.site} before then.")
+        return result

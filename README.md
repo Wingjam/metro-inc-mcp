@@ -27,13 +27,15 @@ The same Moi ID login works for all of them; each banner has its own cart. Brune
 | `add_to_cart` | add one or more products | yes |
 | `update_cart_quantity` | set the quantity of a product in the cart | yes |
 | `remove_from_cart` | remove a product | yes |
+| `clear_cart` | empty the cart in one call; returns what was removed so it can be added back | yes |
 | `find_stores` | pickup stores near a postal code | no |
 | `get_timeslots` | pickup days and timeslots of a store (read only) | no |
-| `set_pickup_store` | choose the cart's pickup store (no timeslot booking) | yes |
+| `set_pickup_store` | choose the cart's pickup store; also removes a booked timeslot | yes |
+| `book_timeslot` | book a pickup timeslot: preview by default, books only with `confirm=true`. The site holds the slot for 2 hours, so book it just before placing the order (not on Jean Coutu) | yes |
 
 Read tools take an optional `language` (`fr` or `en`). French and English use separate search indexes, so search in the user's language. On English-only banners the argument is ignored.
 
-Not supported yet: booking a timeslot, home delivery, coupons.
+Not supported yet: home delivery, coupons.
 
 ## Run
 
@@ -43,6 +45,7 @@ Requires [uv](https://docs.astral.sh/uv/).
 uv sync
 METRO_BANNER=superc uv run metro-inc-mcp # stdio
 uv run pytest # offline parser tests (saved pages, no network)
+uv run ruff check # lint (settings in pyproject.toml)
 ```
 
 Example MCP client config (Kiro `.kiro/settings/mcp.json`, Claude Desktop, ...), one entry per banner:

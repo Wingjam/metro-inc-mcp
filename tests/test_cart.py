@@ -6,7 +6,7 @@ import pytest
 
 from metro_inc_mcp.auth import page_is_authenticated
 from metro_inc_mcp.errors import SiteChanged
-from metro_inc_mcp.parsing.cart import parse_cart_page
+from metro_inc_mcp.parsing.cart import parse_cart_page, parse_csrf
 from metro_inc_mcp.parsing.service import parse_service_context
 
 
@@ -68,6 +68,31 @@ def test_cart_without_summary_is_site_change(page):
     html = page("cart-fr.html").replace("var checkoutCartSummary", "var somethingElse")
     with pytest.raises(SiteChanged):
         parse_cart_page(html)
+
+
+BOOKED_HEADER = """<html><body><script>var cartWithoutTimeslot = false; var serviceType = "pickup";</script>
+<div class="store-to-assign" hidden=""></div>
+<button class="openStoreLocator"><span class="openStoreLocatorTimeslotValue timeslotDescription"> {day}</span>
+<span class="openStoreLocatorTimeslotValue underline timeslotHour"> {hour}</span></button>
+<p class="p-location locationPickup"><span class="openStoreLocatorName store-name"> Super C Drummondville</span></p>
+</body></html>"""
+
+
+@pytest.mark.parametrize(("day", "hour", "label"), [("Demain à", "13h-14h", "Demain à 13h-14h"),
+                                                    ("Tomorrow at", "1PM-2PM", "Tomorrow at 1PM-2PM")])
+def test_service_context_with_booked_slot(day, hour, label):
+    # Synthetic: once a slot is booked, the cart page has no current-store input, only the header.
+    ctx = parse_service_context(BOOKED_HEADER.format(day=day, hour=hour))
+    assert (ctx.service_type, ctx.store_id, ctx.store_name) == ("PICK_UP_IN_STORE", None, "Super C Drummondville")
+    assert (ctx.timeslot_selected, ctx.timeslot) == (True, label)
+
+
+def test_parse_csrf(page):
+    token = "00000000-0000-4000-8000-000000000000"  # made up, same shape as the site's
+    html = (f'<html><head><meta name="_csrf" content="{token}"/><meta name="_csrf_header" content="X-CSRF-TOKEN"/>'
+            "</head><body></body></html>")
+    assert parse_csrf(html) == {"X-CSRF-TOKEN": token}
+    assert parse_csrf(page("cart-fr.html")) == {}  # Super C pages have no CSRF tag
 
 
 def test_page_is_authenticated():

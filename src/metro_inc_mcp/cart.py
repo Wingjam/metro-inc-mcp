@@ -19,10 +19,11 @@ from .models import (
     Cart,
     CartItem,
     CartLine,
+    ClearCartResult,
     RemoveResult,
     UpdatedLine,
 )
-from .parsing.cart import parse_cart_page
+from .parsing.cart import parse_cart_page, parse_csrf
 from .parsing.service import parse_service_context
 
 log = logging.getLogger(__name__)
@@ -108,11 +109,13 @@ class CartService:
                 return line
         raise ProductNotInCart(code)
 
-    async def _send(self, method: str, path: str, payload: object):
-        """JSON AJAX call. On 409, tell apart 'logged out' from 'no store selected'."""
+    async def _send(self, method: str, path: str, payload: object | None, headers: dict[str, str] | None = None):
+        """JSON AJAX call (no body when payload is None). On 409, tell apart 'logged out' from 'no store selected'."""
         await self.auth.ensure_logged_in()
+        body = {} if payload is None else {"data": json.dumps(payload)}
         for attempt in (1, 2):
-            resp = await self.client.request(method, path, ajax=True, headers=JSON_HEADERS, data=json.dumps(payload))
+            resp = await self.client.request(method, path, ajax=True, headers={**JSON_HEADERS, **(headers or {})},
+                                             **body)
             if resp.status_code != 409:
                 break
             html = await self.client.get_text(self._path)
@@ -168,3 +171,21 @@ class CartService:
         resp = await self._send("DELETE", f"{self._path}/entries/{line.entry_number}", {"productCode": code})
         data = resp.json()
         return RemoveResult(removed_code=code, item_count=data.get("cartNbItems"), cart_empty=data.get("isCartEmpty"))
+
+    async def clear(self) -> ClearCartResult:
+        """Remove every line in one call, like the site's 'Vider mon panier' button (DELETE <cart>/entries/all).
+
+        The site's JS sends the X-CSRF-TOKEN from <meta name="_csrf">: Metro needs it (403 without, verified
+        2026-11-09); Super C and Jean Coutu have no such tag and accept the call without it.
+        Returns what was removed, so the assistant can add it back.
+        """
+        lang = self.client.settings.banner.primary_language
+        html = await self._cart_html(lang)
+        before = parse_cart_page(html, lang)
+        removed = [CartItem(product_code=line.code, quantity=line.quantity) for line in before.lines]
+        if not removed:
+            return ClearCartResult(removed=[], item_count=0, cart_empty=True)
+        await self._send("DELETE", f"{self._path}/entries/all", None, headers=parse_csrf(html))
+        after = await self.view()
+        return ClearCartResult(removed=removed, removed_names={line.code: line.name for line in before.lines},
+                               item_count=after.item_count, cart_empty=not after.lines)

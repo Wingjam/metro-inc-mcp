@@ -21,6 +21,14 @@ class CloudflareBlocked(GroceryError):
         )
 
 
+class SiteMaintenance(GroceryError):
+    def __init__(self, site: str) -> None:
+        super().__init__(
+            f"{site} is down for maintenance (every page redirects to its maintenance page). Nothing was changed. "
+            "This is not a login problem: try again later."
+        )
+
+
 class SiteChanged(GroceryError):
     def __init__(self, what: str) -> None:
         super().__init__(f"Could not parse the page ({what}). The site layout may have changed.")
