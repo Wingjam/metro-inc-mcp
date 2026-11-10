@@ -1,0 +1,781 @@
+<!--T7372-2422-->
+<style>
+label[for=deliveryRadio]::after {
+    content: 'Livraison à domicile';
+    font-size: 1.4rem !important;
+}
+label[for=deliveryRadio] {
+    font-size: 0px !important;
+}
+.tk-vt .service-timeslot .toggle__serviceType label {padding: 1.2rem 0;}
+</style><!-- T7372-2391 - hide doordash logo in TS -->
+<style>
+.deliveryStoreList input[data-preparation-type=DOORDASH] + label .delivery-partner .delivery-by {
+display:none;
+}
+
+.deliveryStoreList input[data-preparation-type=DOORDASH] + label .delivery-partner .cta-link.ml-2 {
+display:none;
+}
+</style><style>
+.tk-vt .store-tool-tip-wrapper .store-tool-tip-content {
+left: -4.5rem;
+right: unset;
+width: calc(100vw - 5.5rem);
+}
+.tk-vt .store-tool-tip-wrapper .store-tool-tip-content::before {
+content: none;
+}
+
+.tk-vt .store-tool-tip-wrapper .store-tool-tip[aria-expanded="true"]::before {
+border-bottom: 1.3rem solid #fff;
+    border-left: 1.3rem solid transparent;
+    border-right: 1.3rem solid transparent;
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    right: -0.4rem;
+    top: 2rem;
+    width: 0;
+}
+
+@media only screen and (min-width:730px) {
+.tk-vt .store-tool-tip-wrapper .store-tool-tip-content {
+left: 1rem;
+right: unset;
+width: 32.4rem;
+}
+}
+</style>
+    <script>
+        /*<![CDATA[*/
+        var ecommDeliveryGroupStore = [{"storeId":350,"servicePointId":"","name":"Odile Terzibachi","civicAddress":"","street":"150, rue Sainte-Catherine Ouest, C.P. 181","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H5B 1B3","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45508.0,"longitude":-735654.0,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":381,"servicePointId":"","name":"Dave Larouche \u0026 Vy Ky Linh Le","civicAddress":"","street":"305, rue Sherbrooke Ouest","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2X 1Y1","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":4550869.0,"longitude":-7357132.0,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":204,"servicePointId":"","name":"Dave Larouche \u0026 Vy Ky Linh Le","civicAddress":"","street":"3745, boulevard Saint-Laurent","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2W 1X8","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":455154.0,"longitude":-73575104,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":250,"servicePointId":"","name":"Abdel Hakim Ait-Aoudia","civicAddress":"","street":"980, rue Sainte-Catherine Ouest","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H3B 1E5","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45500721,"longitude":-73571823,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":90,"servicePointId":"","name":"Maher Bitar, Val\u00E9rie Savoie-Rosay \u0026 Lynn Minotti","civicAddress":"","street":"865, rue Sainte-Catherine Est, local R37Z","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2L 0E3","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45516209,"longitude":-73558487,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":68,"servicePointId":"","name":"Maher Bitar \u0026 Val\u00E9rie Savoie-Rosay","civicAddress":"","street":"1675, rue Sainte-Catherine Ouest","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H3H 1L9","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45494289,"longitude":-73579437,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":61,"servicePointId":"","name":"Julie Dansereau, Julie Dubois \u0026 Marie Nguyen","civicAddress":"","street":"501, avenue Mont-Royal Est","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2J 1W6","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45525242,"longitude":-73582207,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":1,"servicePointId":"","name":"Marie Nguyen, Julie Dansereau, Julie Dubois \u0026 Maxime Cloutier-Courcelles","civicAddress":"","street":"1370, avenue Mont-Royal Est","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2J 1Y7","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45530369,"longitude":-7357653.0,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":262,"servicePointId":"","name":"Robert Cotchikian \u0026 Tro Pascal Cotchikian","civicAddress":"","street":"5201, avenue du Parc","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2V 4G9","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45520809,"longitude":-73597733,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":94,"servicePointId":"","name":"Julie Dansereau, Julie Dubois \u0026 Marie Nguyen","civicAddress":"","street":"1990, avenue Mont-Royal Est","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2H 1J4","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":4553429.0,"longitude":-73572899,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":201,"servicePointId":"","name":"Zo\u00E9 Duclos","civicAddress":"","street":"1351, avenue Laurier Est","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2J 1H6","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45533642,"longitude":-73583847,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":252,"servicePointId":"","name":"Maher Bitar \u0026 Val\u00E9rie Savoie-Rosay","civicAddress":"","street":"1222, avenue Greene","city":"Westmount","provinceCode":"QC","postalCode":"H3Z 2A3","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45486252,"longitude":-73588791,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":63,"servicePointId":"","name":"Robert Cotchikian","civicAddress":"","street":"5692, avenue du Parc","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2V 4H1","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45523029,"longitude":-7360482.0,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":107,"servicePointId":"","name":"Nader Farid Bedros","civicAddress":"","street":"3711, rue Notre Dame Ouest","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H4C 1P8","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45479519,"longitude":-73581863,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":91,"servicePointId":"","name":"Gabriel Baddour \u0026 Val\u00E9rie Lajeunesse","civicAddress":"","street":"6500, rue Saint-Hubert","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2S 2M3","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45536018,"longitude":-736035.0,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":140,"servicePointId":"","name":"Gabriel Baddour \u0026 Val\u00E9rie Lajeunesse","civicAddress":"","street":"6461, avenue Christophe-Colomb","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2S 2G5","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45537949,"longitude":-73601089,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":93,"servicePointId":"","name":"Marie-Claude Demers","civicAddress":"","street":"2700, rue Masson","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H1Y 1W5","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45546612,"longitude":-73575478,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":283,"servicePointId":"","name":"Laurence Juteau","civicAddress":"","street":"2505, boulevard Rosemont","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H1Y 1K5","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45546871,"longitude":-73586411,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":96,"servicePointId":"","name":"Ren\u00E9 Gagn\u00E9 \u0026 Marcel Proulx","civicAddress":"","street":"598, avenue Victoria","city":"Saint-Lambert","provinceCode":"QC","postalCode":"J4P 2J6","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":4550079.0,"longitude":-7350882.0,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true},{"storeId":172,"servicePointId":"","name":"Fran\u00E7ois J. Coutu \u0026 Jihad Kahwati","civicAddress":"","street":"1365, avenue Beaumont","city":"Ville Mont-Royal","provinceCode":"QC","postalCode":"H3P 2H7","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":4552055.0,"longitude":-73626381,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"HOME_DELIVERY","preparationType":"DOORDASH","loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":true}];
+        var pickup = [{"storeId":350,"name":"Odile Terzibachi","street":"150, rue Sainte-Catherine Ouest, C.P. 181","city":"Montr\u00E9al","postalCode":"H5B 1B3","provinceCode":"QC","stores":[{"storeId":350,"servicePointId":"0350","name":"Odile Terzibachi","civicAddress":"","street":"150, rue Sainte-Catherine Ouest, C.P. 181","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H5B 1B3","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.508,"longitude":-73.5654,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"PICKUP","preparationType":null,"loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":false}],"doordash":false},{"storeId":381,"name":"Dave Larouche \u0026 Vy Ky Linh Le","street":"305, rue Sherbrooke Ouest","city":"Montr\u00E9al","postalCode":"H2X 1Y1","provinceCode":"QC","stores":[{"storeId":381,"servicePointId":"0381","name":"Dave Larouche \u0026 Vy Ky Linh Le","civicAddress":"","street":"305, rue Sherbrooke Ouest","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2X 1Y1","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.50869,"longitude":-73.57132,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"PICKUP","preparationType":null,"loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":false}],"doordash":false},{"storeId":285,"name":"Doria Boukheroufa","street":"677, rue Sainte-Catherine Ouest, local 2600","city":"Montr\u00E9al","postalCode":"H3B 5K4","provinceCode":"QC","stores":[{"storeId":285,"servicePointId":"0285","name":"Doria Boukheroufa","civicAddress":"","street":"677, rue Sainte-Catherine Ouest, local 2600","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H3B 5K4","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.5031,"longitude":-73.5702,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"NONE","preparationType":null,"loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":false}],"doordash":false},{"storeId":204,"name":"Dave Larouche \u0026 Vy Ky Linh Le","street":"3745, boulevard Saint-Laurent","city":"Montr\u00E9al","postalCode":"H2W 1X8","provinceCode":"QC","stores":[{"storeId":204,"servicePointId":"0204","name":"Dave Larouche \u0026 Vy Ky Linh Le","civicAddress":"","street":"3745, boulevard Saint-Laurent","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H2W 1X8","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.5154,"longitude":-73.575104,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"PICKUP","preparationType":null,"loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":false}],"doordash":false},{"storeId":250,"name":"Abdel Hakim Ait-Aoudia","street":"980, rue Sainte-Catherine Ouest","city":"Montr\u00E9al","postalCode":"H3B 1E5","provinceCode":"QC","stores":[{"storeId":250,"servicePointId":"0250","name":"Abdel Hakim Ait-Aoudia","civicAddress":"","street":"980, rue Sainte-Catherine Ouest","city":"Montr\u00E9al","provinceCode":"QC","postalCode":"H3B 1E5","phoneNumber":"","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.500721,"longitude":-73.571823,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"serviceType":"PICKUP","preparationType":null,"loyaltyProgram":"PJC_MOI","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","doordash":false}],"doordash":false}];
+        /*]]>*/
+    </script>
+    <link rel="stylesheet" type="text/css" href="/magasiner/css/store-inventory-panel.css?v=2026.11.d3"/>
+    <div class="st--header">
+        <h2>Choisissez la livraison à domicile ou le ramassage en succursale</h2>
+        <button id="closeServiceAndTimeslotModal" data-remodal-action="close" class="modal__close focusable">
+            <img src="/magasiner/images/shared/small/icons/close.svg?v=2026.11.d3" alt="">
+            <span class="invisible-text">Ferme la fenêtre modale contextuelle</span>
+        </button>
+    </div>
+
+    <div class="st--main"
+         data-form-state-id="2c68c905-6288-4260-b114-d63172cb2e16" data-express-item-entry="0">
+
+        
+    <form class="form__postal-code stFormPostalCode" novalidate>
+        <label for="deliveryPostalCode">Code postal</label>
+        <div class="postalCode__inputs">
+            <div class="postalCode_input">
+                <input id="deliveryPostalCode" placeholder="Entrez votre code postal" type="text" value="H2X1Y4">
+            </div>
+            <button type="submit" class="postalCode_submit cta-primary" disabled="disabled">Soumettre</button>
+        </div>
+    </form>
+
+
+        
+
+        <div class="alert-container timeslot-unavailable-warning" style="display: none;">
+            <img class="alert-status" src="/magasiner/images/shared/small/icons/icon-area-alert.svg?v=2026.11.d3" alt="">
+            <span class="alert-text">Une erreur s&#39;est produite : la plage horaire que vous avez choisie n&#39;est pas disponible. Veuillez réessayer.</span>
+        </div>
+
+        <div id="serviceCaptchaError" style="display: none;">
+            <div class="alert-container">
+                <img class="alert-status" src="/magasiner/images/shared/small/icons/icon-area-alert.svg?v=2026.11.d3" alt="">
+                <span class="alert-text">La vérification du CAPTCHA a échoué. Veuillez réessayer.</span>
+            </div>
+        </div>
+        
+
+        
+    <div class="st__serviceType toggle__serviceType activeFields">
+        <input type="hidden" name="deliveryStore" data-store-id="350" data-service-point-id="350" data-store-name="Odile Terzibachi" data-store-address="150, rue Sainte-Catherine Ouest, C.P. 181" data-delivery-postal-code="H2X1Y4">
+        <input type="radio" id="deliveryRadio" name="radioServiceType" value="HOME_DELIVERY"
+               hidden
+               data-preparationType="DOORDASH_DELIVERY">
+        <label for="deliveryRadio" tabindex="0" class="">Livraison</label>
+        <input type="radio" id="pickUpRadio" name="radioServiceType" value="PICK_UP_IN_STORE" hidden checked="checked">
+        <label for="pickUpRadio" tabindex="0" class="">Ramassage</label>
+        <input type="hidden" name="serviceTypeSelected">
+    </div>
+
+    
+
+    <div class="timeslot-service-message pickup-service--content" style="display: none;">
+        <p>Vous êtes libre de changer de succursale en tout temps.</p>
+    </div>
+
+    <div class="select--delivery-service" style="display: none;">
+        <div class="panel-msg-box">
+Dans quelle succursale souhaitez-vous faire préparer votre commande?
+</div>
+        <div class="list-store-select deliveryStoreList deliveryStoreSelection">
+            <ul class="store--list">
+                
+    <ul class="store-list">
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_0"
+                   value="350"
+                   data-store-id="350" data-service-point-id="350" data-store-name="Odile Terzibachi" data-store-address="150, rue Sainte-Catherine Ouest, C.P. 181" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_0">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Odile Terzibachi</span>
+                        <span>150, rue Sainte-Catherine Ouest, C.P. 181, Montréal, QC, H5B 1B3</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_1"
+                   value="381"
+                   data-store-id="381" data-service-point-id="381" data-store-name="Dave Larouche &amp; Vy Ky Linh Le" data-store-address="305, rue Sherbrooke Ouest" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_1">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Dave Larouche & Vy Ky Linh Le</span>
+                        <span>305, rue Sherbrooke Ouest, Montréal, QC, H2X 1Y1</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_2"
+                   value="204"
+                   data-store-id="204" data-service-point-id="204" data-store-name="Dave Larouche &amp; Vy Ky Linh Le" data-store-address="3745, boulevard Saint-Laurent" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_2">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Dave Larouche & Vy Ky Linh Le</span>
+                        <span>3745, boulevard Saint-Laurent, Montréal, QC, H2W 1X8</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_3"
+                   value="250"
+                   data-store-id="250" data-service-point-id="250" data-store-name="Abdel Hakim Ait-Aoudia" data-store-address="980, rue Sainte-Catherine Ouest" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_3">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Abdel Hakim Ait-Aoudia</span>
+                        <span>980, rue Sainte-Catherine Ouest, Montréal, QC, H3B 1E5</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_4"
+                   value="90"
+                   data-store-id="90" data-service-point-id="90" data-store-name="Maher Bitar, Valérie Savoie-Rosay &amp; Lynn Minotti" data-store-address="865, rue Sainte-Catherine Est, local R37Z" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_4">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Maher Bitar, Valérie Savoie-Rosay & Lynn Minotti</span>
+                        <span>865, rue Sainte-Catherine Est, local R37Z, Montréal, QC, H2L 0E3</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_5"
+                   value="68"
+                   data-store-id="68" data-service-point-id="68" data-store-name="Maher Bitar &amp; Valérie Savoie-Rosay" data-store-address="1675, rue Sainte-Catherine Ouest" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_5">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Maher Bitar & Valérie Savoie-Rosay</span>
+                        <span>1675, rue Sainte-Catherine Ouest, Montréal, QC, H3H 1L9</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_6"
+                   value="61"
+                   data-store-id="61" data-service-point-id="61" data-store-name="Julie Dansereau, Julie Dubois &amp; Marie Nguyen" data-store-address="501, avenue Mont-Royal Est" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_6">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Julie Dansereau, Julie Dubois & Marie Nguyen</span>
+                        <span>501, avenue Mont-Royal Est, Montréal, QC, H2J 1W6</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_7"
+                   value="1"
+                   data-store-id="1" data-service-point-id="1" data-store-name="Marie Nguyen, Julie Dansereau, Julie Dubois &amp; Maxime Cloutier-Courcelles" data-store-address="1370, avenue Mont-Royal Est" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_7">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Marie Nguyen, Julie Dansereau, Julie Dubois & Maxime Cloutier-Courcelles</span>
+                        <span>1370, avenue Mont-Royal Est, Montréal, QC, H2J 1Y7</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_8"
+                   value="262"
+                   data-store-id="262" data-service-point-id="262" data-store-name="Robert Cotchikian &amp; Tro Pascal Cotchikian" data-store-address="5201, avenue du Parc" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_8">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Robert Cotchikian & Tro Pascal Cotchikian</span>
+                        <span>5201, avenue du Parc, Montréal, QC, H2V 4G9</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_9"
+                   value="94"
+                   data-store-id="94" data-service-point-id="94" data-store-name="Julie Dansereau, Julie Dubois &amp; Marie Nguyen" data-store-address="1990, avenue Mont-Royal Est" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_9">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Julie Dansereau, Julie Dubois & Marie Nguyen</span>
+                        <span>1990, avenue Mont-Royal Est, Montréal, QC, H2H 1J4</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_10"
+                   value="201"
+                   data-store-id="201" data-service-point-id="201" data-store-name="Zoé Duclos" data-store-address="1351, avenue Laurier Est" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_10">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Zoé Duclos</span>
+                        <span>1351, avenue Laurier Est, Montréal, QC, H2J 1H6</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_11"
+                   value="252"
+                   data-store-id="252" data-service-point-id="252" data-store-name="Maher Bitar &amp; Valérie Savoie-Rosay" data-store-address="1222, avenue Greene" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_11">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Maher Bitar & Valérie Savoie-Rosay</span>
+                        <span>1222, avenue Greene, Westmount, QC, H3Z 2A3</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_12"
+                   value="63"
+                   data-store-id="63" data-service-point-id="63" data-store-name="Robert Cotchikian" data-store-address="5692, avenue du Parc" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_12">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Robert Cotchikian</span>
+                        <span>5692, avenue du Parc, Montréal, QC, H2V 4H1</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_13"
+                   value="107"
+                   data-store-id="107" data-service-point-id="107" data-store-name="Nader Farid Bedros" data-store-address="3711, rue Notre Dame Ouest" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_13">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Nader Farid Bedros</span>
+                        <span>3711, rue Notre Dame Ouest, Montréal, QC, H4C 1P8</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_14"
+                   value="91"
+                   data-store-id="91" data-service-point-id="91" data-store-name="Gabriel Baddour &amp; Valérie Lajeunesse" data-store-address="6500, rue Saint-Hubert" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_14">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Gabriel Baddour & Valérie Lajeunesse</span>
+                        <span>6500, rue Saint-Hubert, Montréal, QC, H2S 2M3</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_15"
+                   value="140"
+                   data-store-id="140" data-service-point-id="140" data-store-name="Gabriel Baddour &amp; Valérie Lajeunesse" data-store-address="6461, avenue Christophe-Colomb" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_15">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Gabriel Baddour & Valérie Lajeunesse</span>
+                        <span>6461, avenue Christophe-Colomb, Montréal, QC, H2S 2G5</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_16"
+                   value="93"
+                   data-store-id="93" data-service-point-id="93" data-store-name="Marie-Claude Demers" data-store-address="2700, rue Masson" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_16">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Marie-Claude Demers</span>
+                        <span>2700, rue Masson, Montréal, QC, H1Y 1W5</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_17"
+                   value="283"
+                   data-store-id="283" data-service-point-id="283" data-store-name="Laurence Juteau" data-store-address="2505, boulevard Rosemont" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_17">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">Laurence Juteau</span>
+                        <span>2505, boulevard Rosemont, Montréal, QC, H1Y 1K5</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_18"
+                   value="96"
+                   data-store-id="96" data-service-point-id="96" data-store-name="René Gagné &amp; Marcel Proulx" data-store-address="598, avenue Victoria" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_18">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">René Gagné & Marcel Proulx</span>
+                        <span>598, avenue Victoria, Saint-Lambert, QC, J4P 2J6</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+        <li class="radio-wrapper">
+            <input type="radio" hidden
+                   name="deliveryStore"
+                   id="deliveryStoreSelect_19"
+                   value="172"
+                   data-store-id="172" data-service-point-id="172" data-store-name="François J. Coutu &amp; Jihad Kahwati" data-store-address="1365, avenue Beaumont" data-delivery-postal-code="H2X1Y4" data-preparation-type="DOORDASH">
+            <label for="deliveryStoreSelect_19">
+                <span class="radio--box"></span>
+                <span class="radio--label">
+                        <span class="label-store-name">François J. Coutu & Jihad Kahwati</span>
+                        <span>1365, avenue Beaumont, Ville Mont-Royal, QC, H3P 2H7</span>
+                        <span class="delivery-partner">
+                            <span class="delivery-by">
+                                Livré par
+                                <img src="/magasiner/images/icon/logo/doorDash.svg?v=2026.11.d3" alt="DoorDash"/>
+                            </span>
+                            <a class="cta-link ml-2" target="_blank"
+                               href="/livraison-express/">Voir les détails</a>
+                        </span>
+                    </span>
+            </label>
+        </li>
+    </ul>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="select--pickup-service" style="display: none;">
+        <div class="list-store-select pickupStoreSelection">
+            <ul class="store--list">
+                
+    <li class="radio-wrapper">
+        <input type="radio" hidden
+               name="pickUpStoreSelect"
+               id="pickUpStoreSelect_0"
+               value="350"
+               data-store-id="350" data-pickup-service-point-id="0350" data-store-name="Odile Terzibachi" data-store-address="150, rue Sainte-Catherine Ouest, C.P. 181" data-delivery-postal-code="H2X1Y4" data-catalog-only="false">
+        <label for="pickUpStoreSelect_0">
+            <span class="radio--box"></span>
+            <span class="radio--label">
+                <span class="label-store-name">Odile Terzibachi</span>
+                <span>150, rue Sainte-Catherine Ouest, C.P. 181, Montréal, QC, H5B 1B3</span>
+                
+
+                
+    <span class="roboto-medium color-success mt-2">Ramassage en succursale disponible</span>
+
+
+                
+
+                
+            </span>
+        </label>
+    </li>
+    <li class="radio-wrapper">
+        <input type="radio" hidden
+               name="pickUpStoreSelect"
+               id="pickUpStoreSelect_1"
+               value="381"
+               data-store-id="381" data-pickup-service-point-id="0381" data-store-name="Dave Larouche &amp; Vy Ky Linh Le" data-store-address="305, rue Sherbrooke Ouest" data-delivery-postal-code="H2X1Y4" data-catalog-only="false">
+        <label for="pickUpStoreSelect_1">
+            <span class="radio--box"></span>
+            <span class="radio--label">
+                <span class="label-store-name">Dave Larouche & Vy Ky Linh Le</span>
+                <span>305, rue Sherbrooke Ouest, Montréal, QC, H2X 1Y1</span>
+                
+
+                
+    <span class="roboto-medium color-success mt-2">Ramassage en succursale disponible</span>
+
+
+                
+
+                
+            </span>
+        </label>
+    </li>
+    <li class="radio-wrapper no-service">
+        <input type="radio" hidden
+               name="pickUpStoreSelect"
+               id="pickUpStoreSelect_2"
+               value="285"
+               data-store-id="285" data-store-name="Doria Boukheroufa" data-store-address="677, rue Sainte-Catherine Ouest, local 2600" data-delivery-postal-code="H2X1Y4" data-catalog-only="false" disabled="disabled">
+        <label for="pickUpStoreSelect_2">
+            <span class="radio--box"></span>
+            <span class="radio--label">
+                <span class="label-store-name">Doria Boukheroufa</span>
+                <span>677, rue Sainte-Catherine Ouest, local 2600, Montréal, QC, H3B 5K4</span>
+                
+
+                
+
+                
+     <span class="store-tool-tip-wrapper">
+        <button class="cta-link store-tool-tip" aria-expanded="false">
+            Ramassage en succursale non disponible
+            <span>
+                <img src="/magasiner/images/icon/actions/icon-info.svg?v=2026.11.d3" alt=""/>
+            </span>
+            <span class="invisible-text">Ouvrir le message d&#39;alerte</span>
+        </button>
+        <span class="store-tool-tip-content hide">
+            <button type="button" class="close-tool-tip">
+                <img src="/magasiner/images/icon/actions/close.svg?v=2026.11.d3" alt=""/>
+                <span class="invisible-text">Ferme la fenêtre modale contextuelle</span>
+            </button>
+            <img src="/magasiner/images/icon/logo/icon-service-pickup-exclamation.svg?v=2026.11.d3" alt=""/>
+            <span class="color-primary-text">
+                <strong>Il n'est pas possible de sélectionner cette succursale puisqu'elle n'offre pas le service de ramassage.</strong><span class="d-block color-primary-text">Vous pouvez toujours communiquer avec celle-ci ou vous rendre sur place pour connaître leur assortiment de produits et leur disponibilité.</span>
+                <a href="https://www.jeancoutu.com/localisateur-succursale/285" target="_blank" class="cta-link mt-2">Détails de la succursale</a>
+            </span>
+        </span>
+    </span>
+
+
+                
+            </span>
+        </label>
+    </li>
+    <li class="radio-wrapper">
+        <input type="radio" hidden
+               name="pickUpStoreSelect"
+               id="pickUpStoreSelect_3"
+               value="204"
+               data-store-id="204" data-pickup-service-point-id="0204" data-store-name="Dave Larouche &amp; Vy Ky Linh Le" data-store-address="3745, boulevard Saint-Laurent" data-delivery-postal-code="H2X1Y4" data-catalog-only="false">
+        <label for="pickUpStoreSelect_3">
+            <span class="radio--box"></span>
+            <span class="radio--label">
+                <span class="label-store-name">Dave Larouche & Vy Ky Linh Le</span>
+                <span>3745, boulevard Saint-Laurent, Montréal, QC, H2W 1X8</span>
+                
+
+                
+    <span class="roboto-medium color-success mt-2">Ramassage en succursale disponible</span>
+
+
+                
+
+                
+            </span>
+        </label>
+    </li>
+    <li class="radio-wrapper">
+        <input type="radio" hidden
+               name="pickUpStoreSelect"
+               id="pickUpStoreSelect_4"
+               value="250"
+               data-store-id="250" data-pickup-service-point-id="0250" data-store-name="Abdel Hakim Ait-Aoudia" data-store-address="980, rue Sainte-Catherine Ouest" data-delivery-postal-code="H2X1Y4" data-catalog-only="false">
+        <label for="pickUpStoreSelect_4">
+            <span class="radio--box"></span>
+            <span class="radio--label">
+                <span class="label-store-name">Abdel Hakim Ait-Aoudia</span>
+                <span>980, rue Sainte-Catherine Ouest, Montréal, QC, H3B 1E5</span>
+                
+
+                
+    <span class="roboto-medium color-success mt-2">Ramassage en succursale disponible</span>
+
+
+                
+
+                
+            </span>
+        </label>
+    </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+        
+    </div>
+
+    <div class="st--footer">
+        
+
+            <div tabindex="0">
+                <span class="invisible-text">Votre service sélectionné. </span>
+
+                <div class="st--footer__info footerDelivery" style="display: none;">
+                    <span class="sp_footer-icon">
+                        <img class="icon-delivery" src="/magasiner/images/icon/logo/icon-service-delivery.svg?v=2026.11.d3" alt=""/>
+                    </span>
+                    <span>
+                         <span class="nowrap">
+                            Livraison au
+                        </span>
+                         <strong class="mt-1">H2X 1Y4</strong>
+                    </span>
+                </div>
+                <div class="st--footer__info footerPickup" style="display: none;">
+                    <span class="sp_footer-icon">
+                        <img class="icon-pickup" src="/magasiner/images/icon/logo/icon-service-pickup.svg?v=2026.11.d3" alt=""/>
+                    </span>
+                    <span>
+                        <span class="nowrap">
+                            Ramassage au
+                        </span>
+                        <strong>
+                            <span class="sp_footer-store-name">
+
+                            </span>
+                        </strong>
+                    </span>
+                </div>
+
+                <div id="modalStoreChangeAlert" class="modal-store-change-alert hide">
+
+                    <div class="modal-store-change-alert__content">
+                        <div class="content__top">
+                            <img src="/magasiner/images/shared/small/icons/icon-cart-alert.svg?v=2026.11.d3" alt="Alert" />
+                            <p class="m-0"><strong>Votre panier pourrait changer</strong></p>
+                        </div>
+                        <p class="m-0 color-secondary-text">Le changement de succursale ou de service peut affecter les prix et la disponibilité de certains articles. Révisez votre panier après avoir effectué le changement.</p>
+                        <button class="cta-secondary medium m-0" id="closeBtnModalStoreChangeAlert">J&#39;ai compris</button>
+                    </div>
+                </div>
+
+                <div class="st--footer__info footerPickupDisabled" style="display: none;">
+                    <span class="sp_footer-icon">
+                        <img class="icon-pickup" src="/magasiner/images/icon/logo/icon-exclamation-mark-red.svg?v=2026.11.d3" alt=""/>
+                    </span>
+                    <span>
+                        <span class="nowrap">
+                            Ramassage non offert au
+                        </span>
+                        <strong>
+                            <span class="sp_footer-store-name">
+
+                            </span>
+                        </strong>
+                    </span>
+                </div>
+            </div>
+        
+        <div class="sp_footer_actions">
+            <button id="confirmTimeslot" type="button" class="medium cta-primary" disabled>Confirmer</button>
+        </div>
+    </div>
+    <div id="localStorePanelAlertOverlay" class="store-panel-alert-overlay hide"></div>

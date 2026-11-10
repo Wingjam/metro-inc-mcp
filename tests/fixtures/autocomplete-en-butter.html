@@ -1,0 +1,761 @@
+
+    <script>
+        var productsAutocompleteEmpty = false;
+        var autocompleteSuggestionsEmpty = false;
+        var freeTextSplitted = ["butter"];
+        var autocompleteSuggestions = ["butter","peanut butter","butter chicken"];
+        var searchProductUrl = "\/en\/search?freeText=true\u0026filter=";
+    </script>
+    <div id="productTileErrorAutoComplete" class="alert--error" style="display: none;"></div>
+    <div id="searchResultContainer" class="mobile-scroll-suggestion">
+        <div class="row no-gutters">
+            <div id="col-suggestion">
+                <h3 tabindex="1">Suggestions</h3>
+                <ul class="autocompleteSuggestions ml-null"></ul>
+            </div>
+            <div id="col-produits">
+                
+                    <div class="produits-header">
+                        <h3 tabindex="1">Recommendations</h3>
+                        <div>
+                            <a href="/en/search?freeText=true&amp;filter=butter" class="">413 <span>products</span></a>
+                            
+                            <a href="/en/search/article?keywords=butter" class="">36 <span>articles</span></a>
+                        </div>
+                    </div>
+                    <ul class="autocompleteSuggestions-products">
+                        <li class="w-100" tabindex="1" data-list-name="productSearchAutocomplete">
+                            
+    <div class="default-product-tile tile-product item-addToCart     "
+         data-product-code="059749894784" data-unit-increment="1" data-min-qty="1" data-max-qty="12" data-product-deletable="true" data-is-inactive="false" data-product-name="Salted Butter" data-product-name-en="Salted Butter" data-product-category="Dairy &amp; Eggs" data-product-category-en="Dairy &amp; Eggs" data-product-category-id="000008" data-product-brand="Selection" data-category-url="/aisles/dairy-eggs/milk-cream-butter/butter-margarine" data-is="container-tabs" data-substitution-permission="NO" data-age-restriction="false" data-product-alcohol="false" data-product-loto="false" data-is-weighted="false" data-source-name="SuperC_Product_prd_en" data-query-pipeline="superc_prd_search_qc_en" data-origin-level1="superc_prd_search_qc_en" data-uri="product://059749894784/" data-generic-id="000000000000341505" data-ec-category="[Aisles, Aisles|Dairy &amp; Eggs|Milk, Cream &amp; Butter|Butter &amp; Margarine, Aisles|Dairy &amp; Eggs|Milk, Cream &amp; Butter, Aisles|Dairy &amp; Eggs]" data-ranking-modifier="Reveal ART" data-parent-category-hierarchy="Butter &amp; Margarine|Milk, Cream &amp; Butter|Dairy &amp; Eggs|Aisles" data-merchandise-category="Butter">
+        
+        
+    
+        <button type="button" class="action__favorite addToCartStarter"
+                onclick="findFlowCartStarter(this);"
+                tabindex="1" aria-describedby="itemTitle-059749894784">
+            <img class="heart-empty" src="/images/main/actions/heart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="heart-full" src="/images/main/actions/heart-full.svg?v=2026.fn.7.d20" alt=""/>
+            <span class="invisible-text">Add to your favourites. </span>
+        </button>
+
+        
+    
+
+        
+    
+        
+    
+
+
+        <div class="pt__visual">
+            
+    <div class="visual__stickers" data-dimension-8="REG">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    </div>
+
+            <a href="/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/salted-butter/p/059749894784" tabindex="1" class="product-details-link">
+                <picture class="defaultable-picture">
+                    <source media="(min-width: 115px)" srcset="https://product-images.metro.ca/images/h67/hfe/13653330722846.jpg, https://product-images.metro.ca/images/h3e/h57/13653331705886.jpg"/>
+                    <img onerror="replaceErrorImageByDefaultImage(this)" alt="Salted Butter" src="https://product-images.metro.ca/images/h67/hfe/13653330722846.jpg" srcset="https://product-images.metro.ca/images/h67/hfe/13653330722846.jpg, https://product-images.metro.ca/images/h3e/h57/13653331705886.jpg" data-default="/images/main/icons/superc/icon-no-picture.svg"/>
+                </picture>
+                
+            </a>
+        </div>
+        <div class="pt__content">
+            <div class="pt__content--wrap">
+                <div class="content__head">
+                    
+                    
+                    
+    <div class="pt-name-container">
+
+        
+            <a href="/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/salted-butter/p/059749894784" tabindex="1" class="product-details-link">
+                
+                
+                <span class="head__container">
+                    <span class="head__brand">Selection</span>
+                    <span class="head__title" id="itemTitle-059749894784">Salted Butter</span>
+                </span>
+                
+                <span class="head__unit-details">454 g</span>
+            </a>
+        
+    </div>
+
+                    
+                </div>
+                
+    <div class="error-summary hide">
+        <ul>
+            <li class="product-make-choice-error hide">
+                <a href="" class="focusOnMySelect">Specify an option to add the product to your cart.</a>
+            </li>
+            <li class="product-make-choice-cart-starter-error hide">
+                <a href="" class="focusOnMySelect">Specify an option to add the product to your favourites.</a>
+            </li>
+            <li class="product-cart-starter-add-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while adding the product to your favourites.</a>
+            </li>
+            <li class="product-cart-starter-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the product.</a>
+            </li>
+            <li class="product-cart-update-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while updating the item in your cart.</a>
+            </li>
+            <li class="product-cart-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the item in your cart.</a>
+            </li>
+            <li class="product-cart-starter-update-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while updating the product.</a>
+            </li>
+            <li class="product-cart-starter-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the product.</a>
+            </li>
+            <li class="product-age-restriction-cart-starter-error hide">
+                <a href="" class="focusOnMySelect">Please deselect this product.</a>
+            </li>
+        </ul>
+    </div>
+
+                <div class="content__pricing">
+                    
+    
+	
+
+                    
+    
+
+        
+    
+    
+    
+    
+        
+
+        
+    
+
+        
+    
+    
+    
+    
+
+        
+    <div data-main-price="6.19">
+
+        
+            
+                <div class="pricing__sale-price">
+                    <span class="price-update">$6.19</span>
+                    <span>
+                        &nbsp;<abbr title="Each">ea.</abbr>
+                        
+                    </span>
+                </div>
+            
+
+            
+        
+
+        <div class="pricing__secondary-price">
+            
+
+            
+
+            
+
+            <span>$1.36 /100<abbr title="Gram">g</abbr></span>
+        </div>
+
+        
+            
+                <div class="pricing__unit-value">
+                    
+                </div>
+            
+        
+    </div>
+
+
+    
+
+                    
+    
+        
+    
+
+                </div>
+            </div>
+            
+    <div class="tile-error-msg">
+        
+    
+
+        
+    
+
+        
+    
+
+        
+    
+
+        
+    
+
+    </div>
+
+            <div class="pt__content--actions">
+                
+    
+    <div class="actions__cart pt--actions">
+        
+        <div class="invisible-text" aria-labelledby="added-live--added" aria-hidden="true">Product added to cart.</div>
+        <button type="button" class="btn--minus minus-addToCart minus-updateCart action__remove-from-cart" tabindex="1" aria-describedby="itemTitle-059749894784">
+            <span class="invisible-text">Decrease quantity</span>
+            <img class="cart-delete" src="/images/main/actions/superc/remove-from-cart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="cart-minus" src="/images/main/actions/superc/minus-from-cart.svg?v=2026.fn.7.d20" alt=""/>
+        </button>
+
+        <p class="pt__cart-amount" aria-live="polite" aria-atomic="true">
+            <span class="qty-addToCart">1</span>
+            
+        </p>
+        <button type="button" class="btn--plus plus-addToCart plus-updateCart action__add-to-cart" tabindex="1"
+                aria-describedby="itemTitle-059749894784">
+                    <span class="invisible-text">Increase quantity</span>
+            <img class="cart-plus" src="/images/main/actions/superc/plus-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+        </button>
+        <button class="debounce-250 button-tile-addToCart action__add-to-cart"
+                data-errorbox="productTileErrorAutoComplete"
+                onclick="addProductToCart(this, this.getAttribute(&#39;data-errorbox&#39;))"
+                type="button"
+                tabindex="1"
+                data-target="/en/service-and-timeslot/service-timeslot" aria-describedby="itemTitle-059749894784" aria-label="Add to the shopping cart">
+            <img class="shop-cart" src="/images/main/actions/superc/add-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="cart-plus" src="/images/main/actions/superc/plus-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+            
+        </button>
+    </div>
+
+            </div>
+        </div>
+
+        
+    
+
+    </div>
+
+                        </li>
+                        <li class="w-100" tabindex="1" data-list-name="productSearchAutocomplete">
+                            
+    <div class="default-product-tile tile-product item-addToCart     "
+         data-product-code="059749894777" data-unit-increment="1" data-min-qty="1" data-max-qty="12" data-product-deletable="true" data-is-inactive="false" data-product-name="Unsalted Butter" data-product-name-en="Unsalted Butter" data-product-category="Dairy &amp; Eggs" data-product-category-en="Dairy &amp; Eggs" data-product-category-id="000008" data-product-brand="Selection" data-category-url="/aisles/dairy-eggs/milk-cream-butter/butter-margarine" data-is="container-tabs" data-substitution-permission="NO" data-age-restriction="false" data-product-alcohol="false" data-product-loto="false" data-is-weighted="false" data-source-name="SuperC_Product_prd_en" data-query-pipeline="superc_prd_search_qc_en" data-origin-level1="superc_prd_search_qc_en" data-uri="product://059749894777/" data-generic-id="000000000000341505" data-ec-category="[Aisles|Dairy &amp; Eggs|Milk, Cream &amp; Butter|Butter &amp; Margarine, Aisles, Aisles|Dairy &amp; Eggs, Aisles|Dairy &amp; Eggs|Milk, Cream &amp; Butter]" data-ranking-modifier="Reveal ART" data-parent-category-hierarchy="Butter &amp; Margarine|Milk, Cream &amp; Butter|Dairy &amp; Eggs|Aisles" data-merchandise-category="Butter" data-dietry="Québec">
+        
+        
+    
+        <button type="button" class="action__favorite addToCartStarter"
+                onclick="findFlowCartStarter(this);"
+                tabindex="1" aria-describedby="itemTitle-059749894777">
+            <img class="heart-empty" src="/images/main/actions/heart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="heart-full" src="/images/main/actions/heart-full.svg?v=2026.fn.7.d20" alt=""/>
+            <span class="invisible-text">Add to your favourites. </span>
+        </button>
+
+        
+    
+
+        
+    
+        
+    
+
+
+        <div class="pt__visual">
+            
+    <div class="visual__stickers" data-dimension-8="REG">
+
+        
+
+        
+
+        
+
+        <div class="icon--quebec">
+            <span class="invisible-text">Product of Quebec</span>
+            <img src="/images/shared/small/icons/icon-quebec.svg?v=2026.fn.7.d20" alt=""/>
+        </div>
+
+        
+
+        
+
+    </div>
+
+            <a href="/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/unsalted-butter/p/059749894777" tabindex="1" class="product-details-link">
+                <picture class="defaultable-picture">
+                    <source media="(min-width: 115px)" srcset="https://product-images.metro.ca/images/he6/hb0/13653325676574.jpg, https://product-images.metro.ca/images/hbd/hfe/13653326823454.jpg"/>
+                    <img onerror="replaceErrorImageByDefaultImage(this)" alt="Unsalted Butter" src="https://product-images.metro.ca/images/he6/hb0/13653325676574.jpg" srcset="https://product-images.metro.ca/images/he6/hb0/13653325676574.jpg, https://product-images.metro.ca/images/hbd/hfe/13653326823454.jpg" data-default="/images/main/icons/superc/icon-no-picture.svg"/>
+                </picture>
+                
+            </a>
+        </div>
+        <div class="pt__content">
+            <div class="pt__content--wrap">
+                <div class="content__head">
+                    
+                    
+                    
+    <div class="pt-name-container">
+
+        
+            <a href="/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/unsalted-butter/p/059749894777" tabindex="1" class="product-details-link">
+                
+                
+                <span class="head__container">
+                    <span class="head__brand">Selection</span>
+                    <span class="head__title" id="itemTitle-059749894777">Unsalted Butter</span>
+                </span>
+                
+                <span class="head__unit-details">454 g</span>
+            </a>
+        
+    </div>
+
+                    
+                </div>
+                
+    <div class="error-summary hide">
+        <ul>
+            <li class="product-make-choice-error hide">
+                <a href="" class="focusOnMySelect">Specify an option to add the product to your cart.</a>
+            </li>
+            <li class="product-make-choice-cart-starter-error hide">
+                <a href="" class="focusOnMySelect">Specify an option to add the product to your favourites.</a>
+            </li>
+            <li class="product-cart-starter-add-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while adding the product to your favourites.</a>
+            </li>
+            <li class="product-cart-starter-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the product.</a>
+            </li>
+            <li class="product-cart-update-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while updating the item in your cart.</a>
+            </li>
+            <li class="product-cart-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the item in your cart.</a>
+            </li>
+            <li class="product-cart-starter-update-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while updating the product.</a>
+            </li>
+            <li class="product-cart-starter-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the product.</a>
+            </li>
+            <li class="product-age-restriction-cart-starter-error hide">
+                <a href="" class="focusOnMySelect">Please deselect this product.</a>
+            </li>
+        </ul>
+    </div>
+
+                <div class="content__pricing">
+                    
+    
+	
+
+                    
+    
+
+        
+    
+    
+    
+    
+        
+
+        
+    
+
+        
+    
+    
+    
+    
+
+        
+    <div data-main-price="6.19">
+
+        
+            
+                <div class="pricing__sale-price">
+                    <span class="price-update">$6.19</span>
+                    <span>
+                        &nbsp;<abbr title="Each">ea.</abbr>
+                        
+                    </span>
+                </div>
+            
+
+            
+        
+
+        <div class="pricing__secondary-price">
+            
+
+            
+
+            
+
+            <span>$1.36 /100<abbr title="Gram">g</abbr></span>
+        </div>
+
+        
+            
+                <div class="pricing__unit-value">
+                    
+                </div>
+            
+        
+    </div>
+
+
+    
+
+                    
+    
+        
+    
+
+                </div>
+            </div>
+            
+    <div class="tile-error-msg">
+        
+    
+
+        
+    
+
+        
+    
+
+        
+    
+
+        
+    
+
+    </div>
+
+            <div class="pt__content--actions">
+                
+    
+    <div class="actions__cart pt--actions">
+        
+        <div class="invisible-text" aria-labelledby="added-live--added" aria-hidden="true">Product added to cart.</div>
+        <button type="button" class="btn--minus minus-addToCart minus-updateCart action__remove-from-cart" tabindex="1" aria-describedby="itemTitle-059749894777">
+            <span class="invisible-text">Decrease quantity</span>
+            <img class="cart-delete" src="/images/main/actions/superc/remove-from-cart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="cart-minus" src="/images/main/actions/superc/minus-from-cart.svg?v=2026.fn.7.d20" alt=""/>
+        </button>
+
+        <p class="pt__cart-amount" aria-live="polite" aria-atomic="true">
+            <span class="qty-addToCart">1</span>
+            
+        </p>
+        <button type="button" class="btn--plus plus-addToCart plus-updateCart action__add-to-cart" tabindex="1"
+                aria-describedby="itemTitle-059749894777">
+                    <span class="invisible-text">Increase quantity</span>
+            <img class="cart-plus" src="/images/main/actions/superc/plus-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+        </button>
+        <button class="debounce-250 button-tile-addToCart action__add-to-cart"
+                data-errorbox="productTileErrorAutoComplete"
+                onclick="addProductToCart(this, this.getAttribute(&#39;data-errorbox&#39;))"
+                type="button"
+                tabindex="1"
+                data-target="/en/service-and-timeslot/service-timeslot" aria-describedby="itemTitle-059749894777" aria-label="Add to the shopping cart">
+            <img class="shop-cart" src="/images/main/actions/superc/add-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="cart-plus" src="/images/main/actions/superc/plus-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+            
+        </button>
+    </div>
+
+            </div>
+        </div>
+
+        
+    
+
+    </div>
+
+                        </li>
+                        <li class="w-100" tabindex="1" data-list-name="productSearchAutocomplete">
+                            
+    <div class="default-product-tile tile-product item-addToCart     "
+         data-product-code="059749894807" data-unit-increment="1" data-min-qty="1" data-max-qty="12" data-product-deletable="true" data-is-inactive="false" data-product-name="Salted Butter" data-product-name-en="Salted Butter" data-product-category="Dairy &amp; Eggs" data-product-category-en="Dairy &amp; Eggs" data-product-category-id="000008" data-product-brand="Selection" data-category-url="/aisles/dairy-eggs/milk-cream-butter/butter-margarine" data-is="container-tabs" data-substitution-permission="NO" data-age-restriction="false" data-product-alcohol="false" data-product-loto="false" data-is-weighted="false" data-source-name="SuperC_Product_prd_en" data-query-pipeline="superc_prd_search_qc_en" data-origin-level1="superc_prd_search_qc_en" data-uri="product://059749894807/" data-generic-id="229189" data-ec-category="[Aisles|Dairy &amp; Eggs, Aisles, Aisles|Dairy &amp; Eggs|Milk, Cream &amp; Butter, Aisles|Dairy &amp; Eggs|Milk, Cream &amp; Butter|Butter &amp; Margarine]" data-ranking-modifier="Reveal ART" data-parent-category-hierarchy="Butter &amp; Margarine|Milk, Cream &amp; Butter|Dairy &amp; Eggs|Aisles" data-merchandise-category="Butter">
+        
+        
+    
+        <button type="button" class="action__favorite addToCartStarter"
+                onclick="findFlowCartStarter(this);"
+                tabindex="1" aria-describedby="itemTitle-059749894807">
+            <img class="heart-empty" src="/images/main/actions/heart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="heart-full" src="/images/main/actions/heart-full.svg?v=2026.fn.7.d20" alt=""/>
+            <span class="invisible-text">Add to your favourites. </span>
+        </button>
+
+        
+    
+
+        
+    
+        
+    
+
+
+        <div class="pt__visual">
+            
+    <div class="visual__stickers" data-dimension-8="REG">
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    </div>
+
+            <a href="/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/salted-butter/p/059749894807" tabindex="1" class="product-details-link">
+                <picture class="defaultable-picture">
+                    <source media="(min-width: 115px)" srcset="https://product-images.metro.ca/images/h3d/hcc/9098463608862.jpg, https://product-images.metro.ca/images/h73/h41/9098464722974.jpg"/>
+                    <img onerror="replaceErrorImageByDefaultImage(this)" alt="Salted Butter" src="https://product-images.metro.ca/images/h3d/hcc/9098463608862.jpg" srcset="https://product-images.metro.ca/images/h3d/hcc/9098463608862.jpg, https://product-images.metro.ca/images/h73/h41/9098464722974.jpg" data-default="/images/main/icons/superc/icon-no-picture.svg"/>
+                </picture>
+                
+            </a>
+        </div>
+        <div class="pt__content">
+            <div class="pt__content--wrap">
+                <div class="content__head">
+                    
+                    
+                    
+    <div class="pt-name-container">
+
+        
+            <a href="/en/aisles/dairy-eggs/milk-cream-butter/butter-margarine/salted-butter/p/059749894807" tabindex="1" class="product-details-link">
+                
+                
+                <span class="head__container">
+                    <span class="head__brand">Selection</span>
+                    <span class="head__title" id="itemTitle-059749894807">Salted Butter</span>
+                </span>
+                
+                <span class="head__unit-details">250 g</span>
+            </a>
+        
+    </div>
+
+                    
+                </div>
+                
+    <div class="error-summary hide">
+        <ul>
+            <li class="product-make-choice-error hide">
+                <a href="" class="focusOnMySelect">Specify an option to add the product to your cart.</a>
+            </li>
+            <li class="product-make-choice-cart-starter-error hide">
+                <a href="" class="focusOnMySelect">Specify an option to add the product to your favourites.</a>
+            </li>
+            <li class="product-cart-starter-add-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while adding the product to your favourites.</a>
+            </li>
+            <li class="product-cart-starter-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the product.</a>
+            </li>
+            <li class="product-cart-update-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while updating the item in your cart.</a>
+            </li>
+            <li class="product-cart-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the item in your cart.</a>
+            </li>
+            <li class="product-cart-starter-update-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while updating the product.</a>
+            </li>
+            <li class="product-cart-starter-delete-error hide">
+                <a href="" class="focusOnMySelect">An error occurred while deleting the product.</a>
+            </li>
+            <li class="product-age-restriction-cart-starter-error hide">
+                <a href="" class="focusOnMySelect">Please deselect this product.</a>
+            </li>
+        </ul>
+    </div>
+
+                <div class="content__pricing">
+                    
+    
+	
+
+                    
+    
+
+        
+    
+    
+    
+    
+        
+
+        
+    
+
+        
+    
+    
+    
+    
+
+        
+    <div data-main-price="4.69">
+
+        
+            
+                <div class="pricing__sale-price">
+                    <span class="price-update">$4.69</span>
+                    <span>
+                        &nbsp;<abbr title="Each">ea.</abbr>
+                        
+                    </span>
+                </div>
+            
+
+            
+        
+
+        <div class="pricing__secondary-price">
+            
+
+            
+
+            
+
+            <span>$1.88 /100<abbr title="Gram">g</abbr></span>
+        </div>
+
+        
+            
+                <div class="pricing__unit-value">
+                    
+                </div>
+            
+        
+    </div>
+
+
+    
+
+                    
+    
+        
+    
+
+                </div>
+            </div>
+            
+    <div class="tile-error-msg">
+        
+    
+
+        
+    
+
+        
+    
+
+        
+    
+
+        
+    
+
+    </div>
+
+            <div class="pt__content--actions">
+                
+    
+    <div class="actions__cart pt--actions">
+        
+        <div class="invisible-text" aria-labelledby="added-live--added" aria-hidden="true">Product added to cart.</div>
+        <button type="button" class="btn--minus minus-addToCart minus-updateCart action__remove-from-cart" tabindex="1" aria-describedby="itemTitle-059749894807">
+            <span class="invisible-text">Decrease quantity</span>
+            <img class="cart-delete" src="/images/main/actions/superc/remove-from-cart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="cart-minus" src="/images/main/actions/superc/minus-from-cart.svg?v=2026.fn.7.d20" alt=""/>
+        </button>
+
+        <p class="pt__cart-amount" aria-live="polite" aria-atomic="true">
+            <span class="qty-addToCart">1</span>
+            
+        </p>
+        <button type="button" class="btn--plus plus-addToCart plus-updateCart action__add-to-cart" tabindex="1"
+                aria-describedby="itemTitle-059749894807">
+                    <span class="invisible-text">Increase quantity</span>
+            <img class="cart-plus" src="/images/main/actions/superc/plus-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+        </button>
+        <button class="debounce-250 button-tile-addToCart action__add-to-cart"
+                data-errorbox="productTileErrorAutoComplete"
+                onclick="addProductToCart(this, this.getAttribute(&#39;data-errorbox&#39;))"
+                type="button"
+                tabindex="1"
+                data-target="/en/service-and-timeslot/service-timeslot" aria-describedby="itemTitle-059749894807" aria-label="Add to the shopping cart">
+            <img class="shop-cart" src="/images/main/actions/superc/add-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+            <img class="cart-plus" src="/images/main/actions/superc/plus-to-cart.svg?v=2026.fn.7.d20" alt=""/>
+            
+        </button>
+    </div>
+
+            </div>
+        </div>
+
+        
+    
+
+    </div>
+
+                        </li>
+                        
+                    </ul>
+                    <div class="search-cta-autocomplete">
+                        <a href="/en/search?freeText=true&amp;filter=butter" class="medium cta-primary" tabindex="1">
+                            <span>Search all results (472)</span>
+                            
+                        </a>
+                    </div>
+                    <div class="sticky-search-cta-autocomplete">
+                        <a href="/en/search?freeText=true&amp;filter=butter" class="medium cta-primary" tabindex="1">
+                            <span>Search all results (472)</span>
+                            
+                        </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>

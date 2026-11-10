@@ -1,0 +1,33 @@
+# Scratch files, captured responses, exported cookies (secrets)
+tmp/
+
+# Investigation scripts (local only)
+scripts/
+
+# Local Kiro files (MCP config, steering, working docs)
+.kiro/
+
+# Playwright MCP snapshots and console logs
+.playwright-mcp/
+
+# Cookie / session files, wherever they end up
+*cookies*.json
+*cookies*.txt
+browser-state*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+
+# Env
+.env
+.env.*
+
+# OS / editors
+.DS_Store

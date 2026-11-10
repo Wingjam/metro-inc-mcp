@@ -1,0 +1,2327 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        <script>    $(document).ajaxComplete(function() {        const alertLink = document.querySelector('.instaCartAlert a[href*="how-it-works"]');
+        if (alertLink) {            alertLink.href = '/en/how-it-works/delivery';        }    });</script>
+            
+                <script>
+    $('.cta-secondary.tryPickUp').on("click", function (e) {
+        e.preventDefault();
+        $('.description-link.description-link-delivery').trigger("click");
+    });
+</script>
+            
+                <!--T7105-3482 patch retirer tarif express instacart-->
+<style>
+.lowest-fee-container {
+    display: none !important;
+}
+</style>
+            
+                
+    <script>
+        /*<![CDATA[*/
+        var ecommDeliveryStore = {"storeId":274,"servicePointId":"","name":"Super C Victoriaville","civicAddress":"","street":"601, Rue Jutras Est","city":"Victoriaville","provinceCode":"QC","postalCode":"G6P 7H4","phoneNumber":"819-752-6659","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":46.058750000000000,"longitude":-71.938600000000000,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"packingOptions":[{"code":"BAGLESS","name":"NO PACKAGING REQUIRED"},{"code":"PACKAGING_FLAT_FEE_SUPERC","name":"PACKAGING - $1.50\/order "}],"serviceType":"HOME_DELIVERY","loyaltyProgram":"SUPER_C","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"ic_sc_2118_B","alcoholDeliveryAllowedByStore":true,"multiPassEnabled":false};
+        var mpriorityDeliveryStores = null;
+        var expressDeliveryStore = null;
+        var pickup = [{"storeId":274,"name":"Super C Victoriaville","street":"601, Rue Jutras Est","city":null,"postalCode":null,"provinceCode":"QC","stores":[{"storeId":274,"servicePointId":"0000000429","name":"Super C Victoriaville","civicAddress":"","street":"601, Rue Jutras Est","city":"Victoriaville","provinceCode":"QC","postalCode":"G6P 7H4","phoneNumber":"819-752-6659","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":46.05875,"longitude":-71.9386,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"packingOptions":[{"code":"BAGLESS","name":"NO PACKAGING REQUIRED"},{"code":"PACKAGING_FLAT_FEE_SUPERC","name":"PACKAGING - $1.50\/order "}],"serviceType":"PICKUP","loyaltyProgram":"SUPER_C","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","alcoholDeliveryAllowedByStore":true,"multiPassEnabled":false}]},{"storeId":6167,"name":"Super C St-Nic\u00E9phore","street":"4280 boulevard St-Joseph","city":null,"postalCode":null,"provinceCode":"QC","stores":[{"storeId":6167,"servicePointId":"0000000932","name":"Super C St-Nic\u00E9phore","civicAddress":"","street":"4280 boulevard St-Joseph","city":"Drummondville","provinceCode":"QC","postalCode":"J2B 8C9","phoneNumber":"819-477-1053","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.8474777,"longitude":-72.447292,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"packingOptions":[{"code":"BAGLESS","name":"NO PACKAGING REQUIRED"}],"serviceType":"PICKUP","loyaltyProgram":"SUPER_C","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","alcoholDeliveryAllowedByStore":true,"multiPassEnabled":false}]},{"storeId":262,"name":"Super C Drummondville","street":"565, Boul. Saint-Joseph","city":null,"postalCode":null,"provinceCode":"QC","stores":[{"storeId":262,"servicePointId":"0000000457","name":"Super C Drummondville","civicAddress":"","street":"565, Boul. Saint-Joseph","city":"Drummondville","provinceCode":"QC","postalCode":"J2C 2B6","phoneNumber":"819-474-2702","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":45.89213,"longitude":-72.51682,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"packingOptions":[{"code":"BAGLESS","name":"NO PACKAGING REQUIRED"},{"code":"PACKAGING_FLAT_FEE_SUPERC","name":"PACKAGING - $1.50\/order "}],"serviceType":"PICKUP","loyaltyProgram":"SUPER_C","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","alcoholDeliveryAllowedByStore":true,"multiPassEnabled":false}]},{"storeId":4888,"name":"Super C Thetford Mines","street":"240, Boul. Frontenac Est","city":null,"postalCode":null,"provinceCode":"QC","stores":[{"storeId":4888,"servicePointId":"0000000428","name":"Super C Thetford Mines","civicAddress":"","street":"240, Boul. Frontenac Est","city":"Thetford Mines","provinceCode":"QC","postalCode":"G6G 1N4","phoneNumber":"418-338-6066","corporateName":"","corporateAddress":{"line1":"","line2":"","town":"","postalCode":"","region":"","country":""},"latitude":46.1048561,"longitude":-71.3093677,"tpsNumber":null,"tvqNumber":null,"tvhNumber":null,"packingOptions":[{"code":"BAGLESS","name":"NO PACKAGING REQUIRED"}],"serviceType":"PICKUP","loyaltyProgram":"SUPER_C","smsNotification":false,"timeslotAvailable":false,"expressServiceMaxItemNumber":0,"expressServiceWarningItemNumber":0,"facilityId":"","alcoholDeliveryAllowedByStore":true,"multiPassEnabled":false}]}];
+        var newFlyerTimeslotsExcluded = false;
+        var showEmptyDeliverySection = false;
+        /*]]>*/
+    </script>
+    <div class="st--header">
+        <h2>
+            Select your timeslot
+        </h2>
+        <button id="closeServiceAndTimeslotModal" data-remodal-action="close" class="modal__close focusable">
+            <img src="/images/main/actions/close-x.svg?v=2026.fn.7.d20" alt="">
+            <span class="invisible-text">Close the contextual modal window</span>
+        </button>
+    </div>
+
+    <div class="st--main"
+         data-form-state-id="51962572-88f7-4d44-b388-5241da7a1822" data-express-item-entry="0">
+
+        
+    
+
+        
+    <form class="st__postalCode hide" novalidate>
+        <label for="deliveryPostalCode">Postal code</label>
+        <div class="st__postalCode__inputs">
+            <div class="postalCode_input">
+                <input id="deliveryPostalCode" placeholder="Postal code" type="text" value="G6P7H4">
+                <button type="button" class="postalCode_clear">
+                    <img src="/images/main/actions/close-x.svg?v=2026.fn.7.d20" alt="Clear postal code entry field"/>
+                </button>
+            </div>
+            <button type="button" class="postalCode_submit_delivery cta-primary">Submit</button>
+            <button type="submit" class="postalCode_submit cta-primary" disabled="disabled">Submit</button>
+            <button type="button" class="postalCode_submit_pickup_list cta-primary hide">Submit</button>
+        </div>
+    </form>
+
+
+        
+
+        <div class="bg-dark-background pb-2 postalCodeNotSubmittedAlert hide">
+            <div class="alert-container w-auto align-center">
+                <img class="alert-status" src="/images/main/icons/icon-area-alert.svg?v=2026.fn.7.d20" alt="">
+                <span class="alert-text">Please confirm your postal code.</span>
+            </div>
+        </div>
+
+        <div class="bg-dark-background pb-2 expressMaxItemsAlert hide">
+            <div class="alert-container">
+                <img class="alert-status" src="/images/main/icons/icon-area-alert.svg?v=2026.fn.7.d20" alt="">
+                <span class="alert-text">
+                    <span class="d-inline">Sorry, the 30-product limit has been exceeded. </span>
+                    <button type="button" class="cta-link dark-mode d-inline text-align-left mr-1" id="modifyCartItems">Please remove items from your order</button>
+                    <span class="d-inline">or choose another delivery service.</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="bg-dark-background">
+            <div class="alert-container timeslot-unavailable-warning" style="display: none;">
+                <img class="alert-status" src="/images/main/icons/icon-area-alert.svg?v=2026.fn.7.d20" alt="">
+                <span class="alert-text">An error occurred; the time slot you have chosen is unavailable. Please choose an available time slot.</span>
+            </div>
+        </div>
+
+        <div class="bg-dark-background" id="serviceCaptchaError" style="display: none;">
+            <div class="alert-container">
+                <img class="alert-status" src="/images/main/icons/icon-area-alert.svg?v=2026.fn.7.d20" alt="">
+                <span class="alert-text">The CAPTCHA verification failed. Please try again.</span>
+            </div>
+        </div>
+
+        
+        
+
+        
+    <div class="st__serviceType">
+        
+        <div class="hide from-pick-try-delivery">
+            <img src="/images/main/actions/superc/icon-notification-delivery.svg?v=2026.fn.7.d20"
+                 alt="notification delivery icon"/>
+            <div class="service-desc">
+                <span class="title">Delivery to</span>
+                <span class="destination">G6P 7H4</span>
+            </div>
+            <a class="changeType">Modify</a>
+        </div>
+
+        <div class="hide from-delivery-try-pick">
+            <img src="/images/main/actions/superc/icon-notification-grocery.svg?v=2026.fn.7.d20" alt=""/>
+            <div class="service-desc">
+                <span class="title">Pickup at</span>
+                <span class="destination">Super C Victoriaville</span>
+            </div>
+            <a class="changeType">Modify</a>
+        </div>
+
+        <div class="red-container">
+            
+
+            
+                <img src="/images/main/actions/superc/icon-notification-grocery.svg?v=2026.fn.7.d20"
+                     alt="notification delivery icon"/>
+                <div class="service-desc">
+                    <span class="title">Pickup at</span>
+                    <span class="destination-store-name">Super C Victoriaville</span>
+                    <span class="description-link description-link-delivery">Prefer delivery? <a>Modify your choice</a></span>
+                    <span class="description-link description-link-pickup no-tts-text-change-service" style="display: none">Prefer pickup? <a>Select your store</a></span>
+                </div>
+            
+
+            <a class="changeType">Modify</a>
+        </div>
+    </div>
+
+    <div class="st__serviceType hide">
+        <input type="radio" id="deliveryRadio" name="radioServiceType" value="HOME_DELIVERY" hidden>
+        <label for="deliveryRadio" tabindex="0" class="medium cta-primary dark-mode">Delivery</label>
+        <input type="hidden" name="deliveryStore" data-store-id="274" data-service-point-id="ic_sc_2118_B" data-store-name="Super C Victoriaville" data-store-address="601, Rue Jutras Est" data-delivery-postal-code="G6P7H4">
+        
+        <input type="radio" id="pickUpRadio" name="radioServiceType" value="PICK_UP_IN_STORE" hidden>
+        <label for="pickUpRadio" tabindex="0" class="medium cta-primary dark-mode">Pickup</label>
+        <input type="hidden" name="serviceTypeSelected">
+    </div>
+
+    <input
+            class="preSelectedStore hide" id="current-store" data-store-id="274" data-flexible-service-point-id="0000000429" data-store-name="Super C Victoriaville" data-store-address="601, Rue Jutras Est" data-delivery-postal-code="G6P7H4" data-pickup-service-point-id="0000000429"/>
+    <div class="selection-box timeslotDayGroup select--pickup-service hidden">
+        <h3 class="flexible--title flexibleDeliveryTitle hide">Mpriority</h3>
+        <div class="pickup-store-select pickupStoreSelection accordion--standalone hide" data-feature="accordion-default">
+            <button id="timeslotStoreSelect" type="button" class="accordion--btn" data-action="toggle-accordion" aria-expanded="false">
+                
+                    <span class="available-option">Select your store (4 options)</span>
+                    
+                
+                
+                <span class="selected-store">
+                    <span class="selected-store-name">Super C Victoriaville</span>&nbsp;<span class="selected-store-address">601, Rue Jutras Est</span>
+                </span>
+            </button>
+            <div class=" accordion--text">
+                <div class="hide">
+                    <input type="radio" hidden
+                           name="pickUpStoreSelect"
+                           id="pickUpStoreSelect_0"
+                           value="274"
+                           data-init-timeslot="true" data-store-id="274" data-pickup-service-point-id="0000000429" data-store-name="Super C Victoriaville" data-store-address="601, Rue Jutras Est" data-delivery-postal-code="G6P7H4" checked="checked">
+                    <label for="pickUpStoreSelect_0"><span><span>Super C Victoriaville</span>&nbsp;</span> <span>601, Rue Jutras Est</span></label>
+                </div>
+                <div>
+                    <input type="radio" hidden
+                           name="pickUpStoreSelect"
+                           id="pickUpStoreSelect_1"
+                           value="6167"
+                           data-init-timeslot="false" data-store-id="6167" data-pickup-service-point-id="0000000932" data-store-name="Super C St-Nicéphore" data-store-address="4280 boulevard St-Joseph" data-delivery-postal-code="G6P7H4">
+                    <label for="pickUpStoreSelect_1"><span><span>Super C St-Nicéphore</span>&nbsp;</span> <span>4280 boulevard St-Joseph</span></label>
+                </div>
+                <div>
+                    <input type="radio" hidden
+                           name="pickUpStoreSelect"
+                           id="pickUpStoreSelect_2"
+                           value="262"
+                           data-init-timeslot="false" data-store-id="262" data-pickup-service-point-id="0000000457" data-store-name="Super C Drummondville" data-store-address="565, Boul. Saint-Joseph" data-delivery-postal-code="G6P7H4">
+                    <label for="pickUpStoreSelect_2"><span><span>Super C Drummondville</span>&nbsp;</span> <span>565, Boul. Saint-Joseph</span></label>
+                </div>
+                <div>
+                    <input type="radio" hidden
+                           name="pickUpStoreSelect"
+                           id="pickUpStoreSelect_3"
+                           value="4888"
+                           data-init-timeslot="false" data-store-id="4888" data-pickup-service-point-id="0000000428" data-store-name="Super C Thetford Mines" data-store-address="240, Boul. Frontenac Est" data-delivery-postal-code="G6P7H4">
+                    <label for="pickUpStoreSelect_3"><span><span>Super C Thetford Mines</span>&nbsp;</span> <span>240, Boul. Frontenac Est</span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+    <div class="section-day-selection select--delivery-service" tabindex="0">
+        <!-- start alert tooltip new flyer-->
+        
+    <div class="tooltip-container tooltip-alert-new-flyer tooltipAlertNewFlyer hide">
+        <div class="tooltip-modal">
+            <button class="modal__close focusable"><img src="/images/main/actions/close-x.svg?v=2026.fn.7.d20" alt=""></button>
+            <div class="tooltip-modal-new-flyer-title">
+                <img src="/images/main/actions/superc/icon-flyer-alert-grey.svg?v=2026.fn.7.d20" alt="">
+                <span><strong>Prices may change with the new flyer.</strong></span>
+            </div>
+            <span class="tooltip-modal-text d-block">Deals and prices displayed are valid from Thursday to Wednesday. To benefit from the current weekly deals and prices, your order must be delivered or picked up by this Wednesday. Please <a href="/en/help-center/assistance" title="link to faq">consult our FAQ</a> to learn more</span>
+        </div>
+    </div>
+
+        <!-- end alert tooltip new flyer-->
+
+        <div class="timeslot-days-slick selectDeliveryStore activeDeliveryStore" data-service-type="HOME_DELIVERY" data-store-id="274" data-service-point-id="ic_sc_2118_B" data-init-timeslot="false" data-aria-label="Select a day for delivery service">
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-08"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-08" data-new-flyer-coverage="false">Today</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-09"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-09" data-new-flyer-coverage="false">Tomorrow</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-10"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-10" data-new-flyer-coverage="false">Day after</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-11"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-11" data-new-flyer-coverage="false">Wednesday Nov. 11</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-12 new--flyer"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-12" data-new-flyer-coverage="true">Thursday Nov. 12</button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-13"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-13" data-new-flyer-coverage="true">Friday Nov. 13</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-14"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-14" data-new-flyer-coverage="true">Saturday Nov. 14</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-15"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-15" data-new-flyer-coverage="true">Sunday Nov. 15</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-16"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-16" data-new-flyer-coverage="true">Monday Nov. 16</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-17"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-17" data-new-flyer-coverage="true">Tuesday Nov. 17</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-18"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-18" data-new-flyer-coverage="true">Wednesday Nov. 18</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-19 new--flyer"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-19" data-new-flyer-coverage="true">Thursday Nov. 19</button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-20"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-20" data-new-flyer-coverage="true">Friday Nov. 20</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button" class="day-selection_btn service-home_delivery-2026-11-21"
+                            data-timeslot-isloaded="false" data-timeslot-date="2026-11-21" data-new-flyer-coverage="true">Saturday Nov. 21</button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="section-day-selection select--pickup-service" tabindex="0">
+        <!-- start alert tooltip new flyer-->
+        
+    <div class="tooltip-container tooltip-alert-new-flyer tooltipAlertNewFlyer hide">
+        <div class="tooltip-modal">
+            <button class="modal__close focusable"><img src="/images/main/actions/close-x.svg?v=2026.fn.7.d20" alt=""></button>
+            <div class="tooltip-modal-new-flyer-title">
+                <img src="/images/main/actions/superc/icon-flyer-alert-grey.svg?v=2026.fn.7.d20" alt="">
+                <span><strong>Prices may change with the new flyer.</strong></span>
+            </div>
+            <span class="tooltip-modal-text d-block">Deals and prices displayed are valid from Thursday to Wednesday. To benefit from the current weekly deals and prices, your order must be delivered or picked up by this Wednesday. Please <a href="/en/help-center/assistance" title="link to faq">consult our FAQ</a> to learn more</span>
+        </div>
+    </div>
+
+        <!-- end alert tooltip new flyer-->
+
+        <div class="timeslot-days-slick select--pickup-store activePickupStore" data-init-timeslot="true" data-service-type="PICK_UP_IN_STORE" data-pickup-service-type="PICK_UP_IN_STORE" data-flexible-service-type="MPRIORITY_PICKUP" data-store-id="274" data-service-point-id="0000000429" data-pickup-service-point-id="0000000429" data-aria-label="Select a day for pick-up service">
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-08" data-timeslot-isloaded="true" data-timeslot-date="2026-11-08" data-timeslot-status="FULL" data-new-flyer-coverage="false">
+                        <span>Today</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-09" data-timeslot-isloaded="true" data-timeslot-date="2026-11-09" data-timeslot-status="AVAILABLE" data-new-flyer-coverage="false">
+                        <span>Tomorrow</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-10" data-timeslot-isloaded="true" data-timeslot-date="2026-11-10" data-timeslot-status="AVAILABLE" data-new-flyer-coverage="false">
+                        <span>Day after</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-11" data-timeslot-isloaded="true" data-timeslot-date="2026-11-11" data-timeslot-status="AVAILABLE" data-new-flyer-coverage="false">
+                        <span>Wednesday Nov. 11</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-12 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-12" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 12</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-13" data-timeslot-isloaded="false" data-timeslot-date="2026-11-13" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 13</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-14" data-timeslot-isloaded="false" data-timeslot-date="2026-11-14" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 14</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-15" data-timeslot-isloaded="false" data-timeslot-date="2026-11-15" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Sunday Nov. 15</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-16" data-timeslot-isloaded="false" data-timeslot-date="2026-11-16" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Monday Nov. 16</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-17" data-timeslot-isloaded="false" data-timeslot-date="2026-11-17" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Tuesday Nov. 17</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-18" data-timeslot-isloaded="false" data-timeslot-date="2026-11-18" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Wednesday Nov. 18</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-19 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-19" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 19</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-20" data-timeslot-isloaded="false" data-timeslot-date="2026-11-20" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 20</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-21" data-timeslot-isloaded="false" data-timeslot-date="2026-11-21" data-timeslot-status="NO_TIMESLOT" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 21</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+        </div>
+
+        <div class="timeslot-days-slick select--pickup-store hide" data-init-timeslot="false" data-service-type="PICK_UP_IN_STORE" data-pickup-service-type="PICK_UP_IN_STORE" data-flexible-service-type="MPRIORITY_PICKUP" data-store-id="6167" data-service-point-id="0000000932" data-pickup-service-point-id="0000000932" data-aria-label="Select a day for pick-up service">
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-08" data-timeslot-isloaded="false" data-timeslot-date="2026-11-08" data-new-flyer-coverage="false">
+                        <span>Today</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-09" data-timeslot-isloaded="false" data-timeslot-date="2026-11-09" data-new-flyer-coverage="false">
+                        <span>Tomorrow</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-10" data-timeslot-isloaded="false" data-timeslot-date="2026-11-10" data-new-flyer-coverage="false">
+                        <span>Day after</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-11" data-timeslot-isloaded="false" data-timeslot-date="2026-11-11" data-new-flyer-coverage="false">
+                        <span>Wednesday Nov. 11</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-12 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-12" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 12</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-13" data-timeslot-isloaded="false" data-timeslot-date="2026-11-13" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 13</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-14" data-timeslot-isloaded="false" data-timeslot-date="2026-11-14" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 14</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-15" data-timeslot-isloaded="false" data-timeslot-date="2026-11-15" data-new-flyer-coverage="true">
+                        <span>Sunday Nov. 15</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-16" data-timeslot-isloaded="false" data-timeslot-date="2026-11-16" data-new-flyer-coverage="true">
+                        <span>Monday Nov. 16</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-17" data-timeslot-isloaded="false" data-timeslot-date="2026-11-17" data-new-flyer-coverage="true">
+                        <span>Tuesday Nov. 17</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-18" data-timeslot-isloaded="false" data-timeslot-date="2026-11-18" data-new-flyer-coverage="true">
+                        <span>Wednesday Nov. 18</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-19 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-19" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 19</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-20" data-timeslot-isloaded="false" data-timeslot-date="2026-11-20" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 20</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-21" data-timeslot-isloaded="false" data-timeslot-date="2026-11-21" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 21</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+        </div>
+
+        <div class="timeslot-days-slick select--pickup-store hide" data-init-timeslot="false" data-service-type="PICK_UP_IN_STORE" data-pickup-service-type="PICK_UP_IN_STORE" data-flexible-service-type="MPRIORITY_PICKUP" data-store-id="262" data-service-point-id="0000000457" data-pickup-service-point-id="0000000457" data-aria-label="Select a day for pick-up service">
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-08" data-timeslot-isloaded="false" data-timeslot-date="2026-11-08" data-new-flyer-coverage="false">
+                        <span>Today</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-09" data-timeslot-isloaded="false" data-timeslot-date="2026-11-09" data-new-flyer-coverage="false">
+                        <span>Tomorrow</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-10" data-timeslot-isloaded="false" data-timeslot-date="2026-11-10" data-new-flyer-coverage="false">
+                        <span>Day after</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-11" data-timeslot-isloaded="false" data-timeslot-date="2026-11-11" data-new-flyer-coverage="false">
+                        <span>Wednesday Nov. 11</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-12 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-12" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 12</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-13" data-timeslot-isloaded="false" data-timeslot-date="2026-11-13" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 13</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-14" data-timeslot-isloaded="false" data-timeslot-date="2026-11-14" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 14</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-15" data-timeslot-isloaded="false" data-timeslot-date="2026-11-15" data-new-flyer-coverage="true">
+                        <span>Sunday Nov. 15</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-16" data-timeslot-isloaded="false" data-timeslot-date="2026-11-16" data-new-flyer-coverage="true">
+                        <span>Monday Nov. 16</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-17" data-timeslot-isloaded="false" data-timeslot-date="2026-11-17" data-new-flyer-coverage="true">
+                        <span>Tuesday Nov. 17</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-18" data-timeslot-isloaded="false" data-timeslot-date="2026-11-18" data-new-flyer-coverage="true">
+                        <span>Wednesday Nov. 18</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-19 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-19" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 19</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-20" data-timeslot-isloaded="false" data-timeslot-date="2026-11-20" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 20</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-21" data-timeslot-isloaded="false" data-timeslot-date="2026-11-21" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 21</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+        </div>
+
+        <div class="timeslot-days-slick select--pickup-store hide" data-init-timeslot="false" data-service-type="PICK_UP_IN_STORE" data-pickup-service-type="PICK_UP_IN_STORE" data-flexible-service-type="MPRIORITY_PICKUP" data-store-id="4888" data-service-point-id="0000000428" data-pickup-service-point-id="0000000428" data-aria-label="Select a day for pick-up service">
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-08" data-timeslot-isloaded="false" data-timeslot-date="2026-11-08" data-new-flyer-coverage="false">
+                        <span>Today</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-09" data-timeslot-isloaded="false" data-timeslot-date="2026-11-09" data-new-flyer-coverage="false">
+                        <span>Tomorrow</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-10" data-timeslot-isloaded="false" data-timeslot-date="2026-11-10" data-new-flyer-coverage="false">
+                        <span>Day after</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-11" data-timeslot-isloaded="false" data-timeslot-date="2026-11-11" data-new-flyer-coverage="false">
+                        <span>Wednesday Nov. 11</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-12 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-12" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 12</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-13" data-timeslot-isloaded="false" data-timeslot-date="2026-11-13" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 13</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-14" data-timeslot-isloaded="false" data-timeslot-date="2026-11-14" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 14</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-15" data-timeslot-isloaded="false" data-timeslot-date="2026-11-15" data-new-flyer-coverage="true">
+                        <span>Sunday Nov. 15</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-16" data-timeslot-isloaded="false" data-timeslot-date="2026-11-16" data-new-flyer-coverage="true">
+                        <span>Monday Nov. 16</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-17" data-timeslot-isloaded="false" data-timeslot-date="2026-11-17" data-new-flyer-coverage="true">
+                        <span>Tuesday Nov. 17</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-18" data-timeslot-isloaded="false" data-timeslot-date="2026-11-18" data-new-flyer-coverage="true">
+                        <span>Wednesday Nov. 18</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                <div>
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-19 new--flyer" data-timeslot-isloaded="false" data-timeslot-date="2026-11-19" data-new-flyer-coverage="true">
+                        <span>Thursday Nov. 19</span>
+                    </button>
+                </div>
+                
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-20" data-timeslot-isloaded="false" data-timeslot-date="2026-11-20" data-new-flyer-coverage="true">
+                        <span>Friday Nov. 20</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+            <div>
+
+                <!-- start alert tooltip new flyer-->
+                
+                <div>
+                    <!-- end alert tooltip new flyer-->
+
+                    <button type="button"
+                            class="day-selection_btn service-pick_up_in_store-2026-11-21" data-timeslot-isloaded="false" data-timeslot-date="2026-11-21" data-new-flyer-coverage="true">
+                        <span>Saturday Nov. 21</span>
+                    </button>
+
+                    <!-- start alert tooltip new flyer-->
+                </div>
+                <!-- end alert tooltip new flyer-->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="select--delivery-service container-radios">
+        <div class="alert-full-day timeslotAlert deliveryTimeslotAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-delivery-alert.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Sorry, there are no more availabilities for this day.
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert deliveryTimeslotNewFlyerAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-delivery-alert.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Come back on Tuesday afternoon to reserve your delivery time.
+                
+                <button type="button" class="cta-secondary tryPickUp">Try pickup</button>
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert flexibleDeliveryTimeslotAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-delivery-alert.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Sorry! There are no Mpriority time slots available for the selected day. Please choose another day.
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert flexibleDeliveryTimeslotNewFlyerAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-delivery-alert.svg?v=2026.fn.7.d20" alt=""/>
+            
+        </div>
+        <div class="alert-full-day timeslotAlert deliveryErrorNewFlyerAlert hide">
+            <img src="/images/main/icons/icon-time-alert.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Come back on Thursday November 12 to see the updated time slots of the new flyer!
+            </div>
+        </div>
+        <div class="lowest-fee-container">
+            <button class="lowestFeeBtn" role="button">
+            <span class="text-fee">
+                <span class="title-fee">Lowest fee?&nbsp;</span>
+                
+              <span class="desc-fee">It’s cheaper tomorrow.</span>
+            </span>
+                <span class="cheapest-tag">
+                <img src="/images/main/icons/icon-check-dollar.svg?v=2026.fn.7.d20" alt="">
+                <span>lowest fee</span>
+            </span>
+                <img class="img-express" src="/images/main/actions/arrow-right.svg?v=2026.fn.7.d20" alt="">
+            </button>
+        </div>
+
+        <div class="selection-box-container timeslotDeliveryContainer activeTimeslotContainer" data-store-id="274" data-service-point-id="ic_sc_2118_B">
+            
+    
+
+        </div>
+        
+    </div>
+    <div class="select--pickup-service">
+        <div class="alert-full-day timeslotAlert pickupTimeslotAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-grocery-dark.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Sorry, there are no more availabilities for this day.
+                <button type="button" class="cta-secondary tryDelivery">Try deliveries</button>
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert pickupTimeslotNewFlyerAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-grocery-dark.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Come back on Tuesday afternoon to reserve your pick-up time.
+                
+                <button type="button" class="cta-secondary tryDelivery">Try deliveries</button>
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert flexiblePickupTimeslotAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-grocery-dark.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Sorry! There are no Mpriority time slots available for the selected day. Please choose another day.
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert flexiblePickupTimeslotNewFlyerAlert hide">
+            <img src="/images/main/actions/superc/icon-notification-grocery-dark.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Come back on Tuesday afternoon to reserve your Mpriority pick-up time.
+                
+                <button type="button" class="cta-secondary tryDelivery">Try deliveries</button>
+            </div>
+        </div>
+        <div class="alert-full-day timeslotAlert pickupErrorNewFlyerAlert hide">
+            <img src="/images/main/icons/icon-time-alert.svg?v=2026.fn.7.d20" alt=""/>
+            <div>
+                Come back on Thursday November 12 to see the updated time slots of the new flyer!
+            </div>
+        </div>
+        <div class="selection-box-container timeslotPickupContainer  activeTimeslotContainer"
+             data-store-id="274">
+            
+    
+        <div class="timeslot-day-group timeslotDayGroup timeslot-group-inactive service-pick_up_in_store-2026-11-08">
+            
+        </div>
+    
+        <div class="timeslot-day-group timeslotDayGroup timeslot-group-inactive service-pick_up_in_store-2026-11-09">
+            
+                <ul class="selection-box" data-day-date="2026-11-09">
+                    
+                    
+
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-1" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-1"
+                                       slot-id="15683441" slot-store-id="0000000429" slot-from="2026-11-09T12:00-05:00" slot-to="2026-11-09T13:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">12PM-1PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-2" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-2"
+                                       slot-id="15683443" slot-store-id="0000000429" slot-from="2026-11-09T13:00-05:00" slot-to="2026-11-09T14:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">1PM-2PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-3" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-3"
+                                       slot-id="15683442" slot-store-id="0000000429" slot-from="2026-11-09T14:00-05:00" slot-to="2026-11-09T15:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">2PM-3PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-4" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-4"
+                                       slot-id="15683445" slot-store-id="0000000429" slot-from="2026-11-09T15:00-05:00" slot-to="2026-11-09T16:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">3PM-4PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-5" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-5"
+                                       slot-id="15683444" slot-store-id="0000000429" slot-from="2026-11-09T16:00-05:00" slot-to="2026-11-09T17:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">4PM-5PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-6" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-6"
+                                       slot-id="15683446" slot-store-id="0000000429" slot-from="2026-11-09T17:00-05:00" slot-to="2026-11-09T18:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">5PM-6PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-7" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-7"
+                                       slot-id="15683448" slot-store-id="0000000429" slot-from="2026-11-09T18:00-05:00" slot-to="2026-11-09T19:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">6PM-7PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-8" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-8"
+                                       slot-id="15683447" slot-store-id="0000000429" slot-from="2026-11-09T19:00-05:00" slot-to="2026-11-09T20:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">7PM-8PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-09-274-1-9" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-09-274-1-9"
+                                       slot-id="15683449" slot-store-id="0000000429" slot-from="2026-11-09T20:00-05:00" slot-to="2026-11-09T21:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">8PM-9PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                </ul>
+            
+        </div>
+    
+        <div class="timeslot-day-group timeslotDayGroup timeslot-group-inactive service-pick_up_in_store-2026-11-10">
+            
+                <ul class="selection-box" data-day-date="2026-11-10">
+                    
+                    
+
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-1" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-1"
+                                       slot-id="15684405" slot-store-id="0000000429" slot-from="2026-11-10T09:00-05:00" slot-to="2026-11-10T10:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">9AM-10AM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-2" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-2"
+                                       slot-id="15684408" slot-store-id="0000000429" slot-from="2026-11-10T10:00-05:00" slot-to="2026-11-10T11:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">10AM-11AM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-3" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-3"
+                                       slot-id="15684407" slot-store-id="0000000429" slot-from="2026-11-10T11:00-05:00" slot-to="2026-11-10T12:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">11AM-12PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-4" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-4"
+                                       slot-id="15684409" slot-store-id="0000000429" slot-from="2026-11-10T12:00-05:00" slot-to="2026-11-10T13:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">12PM-1PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-5" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-5"
+                                       slot-id="15684410" slot-store-id="0000000429" slot-from="2026-11-10T13:00-05:00" slot-to="2026-11-10T14:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">1PM-2PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-6" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-6"
+                                       slot-id="15684411" slot-store-id="0000000429" slot-from="2026-11-10T14:00-05:00" slot-to="2026-11-10T15:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">2PM-3PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-7" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-7"
+                                       slot-id="15684412" slot-store-id="0000000429" slot-from="2026-11-10T15:00-05:00" slot-to="2026-11-10T16:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">3PM-4PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-8" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-8"
+                                       slot-id="15684413" slot-store-id="0000000429" slot-from="2026-11-10T16:00-05:00" slot-to="2026-11-10T17:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">4PM-5PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-9" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-9"
+                                       slot-id="15684414" slot-store-id="0000000429" slot-from="2026-11-10T17:00-05:00" slot-to="2026-11-10T18:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">5PM-6PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-10" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-10"
+                                       slot-id="15684415" slot-store-id="0000000429" slot-from="2026-11-10T18:00-05:00" slot-to="2026-11-10T19:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">6PM-7PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-11" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-11"
+                                       slot-id="15684418" slot-store-id="0000000429" slot-from="2026-11-10T19:00-05:00" slot-to="2026-11-10T20:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">7PM-8PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-10-274-1-12" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-10-274-1-12"
+                                       slot-id="15684417" slot-store-id="0000000429" slot-from="2026-11-10T20:00-05:00" slot-to="2026-11-10T21:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">8PM-9PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                </ul>
+            
+        </div>
+    
+        <div class="timeslot-day-group timeslotDayGroup timeslot-group-inactive service-pick_up_in_store-2026-11-11">
+            
+                <ul class="selection-box" data-day-date="2026-11-11">
+                    
+                    
+
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-1" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-1"
+                                       slot-id="15685374" slot-store-id="0000000429" slot-from="2026-11-11T09:00-05:00" slot-to="2026-11-11T10:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">9AM-10AM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-2" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-2"
+                                       slot-id="15685376" slot-store-id="0000000429" slot-from="2026-11-11T10:00-05:00" slot-to="2026-11-11T11:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">10AM-11AM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-3" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-3"
+                                       slot-id="15685375" slot-store-id="0000000429" slot-from="2026-11-11T11:00-05:00" slot-to="2026-11-11T12:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">11AM-12PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-4" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-4"
+                                       slot-id="15685377" slot-store-id="0000000429" slot-from="2026-11-11T12:00-05:00" slot-to="2026-11-11T13:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">12PM-1PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-5" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-5"
+                                       slot-id="15685381" slot-store-id="0000000429" slot-from="2026-11-11T13:00-05:00" slot-to="2026-11-11T14:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">1PM-2PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-6" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-6"
+                                       slot-id="15685383" slot-store-id="0000000429" slot-from="2026-11-11T14:00-05:00" slot-to="2026-11-11T15:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">2PM-3PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-7" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-7"
+                                       slot-id="15685379" slot-store-id="0000000429" slot-from="2026-11-11T15:00-05:00" slot-to="2026-11-11T16:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">3PM-4PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-8" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-8"
+                                       slot-id="15685378" slot-store-id="0000000429" slot-from="2026-11-11T16:00-05:00" slot-to="2026-11-11T17:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">4PM-5PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-9" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-9"
+                                       slot-id="15685380" slot-store-id="0000000429" slot-from="2026-11-11T17:00-05:00" slot-to="2026-11-11T18:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">5PM-6PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-10" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-10"
+                                       slot-id="15685382" slot-store-id="0000000429" slot-from="2026-11-11T18:00-05:00" slot-to="2026-11-11T19:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">6PM-7PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-11" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-11"
+                                       slot-id="15685385" slot-store-id="0000000429" slot-from="2026-11-11T19:00-05:00" slot-to="2026-11-11T20:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">7PM-8PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                        <li class="radio--standard"
+                            data-timeslot-status="AVAILABLE" data-timeslot-selected="false">
+                            <label for="pick_up_in_store-timeslot-opt-2026-11-11-274-1-12" tabindex="0">
+                                <input type="radio" name="select-timeslot-pick_up_in_store" class="standard-timeslots-pick_up_in_store"
+                                       id="pick_up_in_store-timeslot-opt-2026-11-11-274-1-12"
+                                       slot-id="15685384" slot-store-id="0000000429" slot-from="2026-11-11T20:00-05:00" slot-to="2026-11-11T21:00-05:00" slot-alcohol-delivery-allowed="false"/>
+                                <span class="radio--box"></span>
+                                <span class="radio--label">
+                        <span class="express-delivery-timeslot-msg tts-info">
+                            
+                            
+                            <span class="timeslot--title">8PM-9PM</span>
+                        </span>
+                    
+                        <span class="timeslot-price">Free</span>
+                        </span>
+                                <span class="select-box-effect"></span>
+                            </label>
+                        </li>
+                    
+                </ul>
+            
+        </div>
+    
+
+            
+    
+
+        </div>
+        <div class="selection-box-container timeslotPickupContainer"
+             data-store-id="6167">
+            
+            
+        </div>
+        <div class="selection-box-container timeslotPickupContainer"
+             data-store-id="262">
+            
+            
+        </div>
+        <div class="selection-box-container timeslotPickupContainer"
+             data-store-id="4888">
+            
+            
+        </div>
+    </div>
+
+    <div class="flexible-text showFlexibleText hide mprio-content">
+        <h4>Mpriority</h4>
+        <button class="cta-link showTimeslotFlexible">Flexible </button>
+        <span class="flexibleDeliveryText hide">&nbsp;in time? Try our Mpriority service and receive your order in 48 hours or more.</span>
+        <span class="flexiblePickUpText hide">&nbsp;in time? Try our Mpriority service and pick up your order in 48 hours or more.</span>
+        <button type="button" class="medium cta-secondary d-block mt-2 showTimeslotFlexible">Try Mpriority</button>
+    </div>
+    <div class="flexible-text showAllTimeslotText hide">
+        <button class="cta-link seeAllTimeslot">See all timeslots</button>
+    </div>
+
+
+        
+    <div class="alert-container flexibleServiceAlert alert-white mprio-display hide">
+        <img class="alert-status" src="/images/main/status/icon-notification-delivery-express-white.svg?v=2026.fn.7.d20" alt="">
+        <span class="alert-text flexibleAlertDelivery hide">You will receive an e-mail or a call from us on delivery day to confirm the time scheduled for your order. You must remain available for the entire time slot.</span>
+        <span class="alert-text flexibleAlertPickUp hide">You will receive an e-mail or a call from us on pick-up day to confirm the time you can pick up your order.</span>
+    </div>
+
+        
+    <div class="bg-light-background alert-insta-cart instaCartAlert hide">
+        <div class="alert-container alert-white alert-instacart">
+            <div class="insta-container">
+                <img class="alert-status" src="/images/main/logo/instacart-logo.png?v=2026.fn.7.d20" alt="">
+            </div>
+            <span class="alert-text" tabindex="0">Delivered by Instacart. <a target="_blank" href="/en/how-it-works/delivery">See details</a></span>
+        </div>
+    </div>
+
+
+        <div class="service-captcha">
+            
+            <div id="serviceRecaptchaContainer">
+                <div id="serviceRecaptcha" class="g-recaptcha" data-sitekey="6Leg4kAgAAAAAGwfD6WERdhXXsavt9kBxPJ_rD4y" data-size="invisible" data-callback="executeFindInfoAndAssignStoreToCart">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="st--footer">
+        <div>
+            <div id="modal-live-region" class="invisible-text" aria-live="assertive" aria-atomic="true"></div>
+
+            
+            <div class="overlay-tooltip-intercetp-new-flyer hide">
+
+            </div>
+            <div class="tooltip-container tooltip-alert-new-flyer tooltipInterceptNewFlyer intercept-confimation hide">
+                <div class="tooltip-modal">
+                    <div class="tooltip-modal-new-flyer-title">
+                        <img src="/images/main/actions/superc/icon-flyer-alert-grey.svg?v=2026.fn.7.d20" alt="">
+                        <span><strong>Psst !</strong> This time slot uses the prices in effect of another flyer week.</span>
+                    </div>
+                    <span class="tooltip-modal-text d-block">By choosing this timeslot, you acknowledge that prices may change.</span>
+                    <button type="button" class="medium cta-secondary confirmBtn w-100">Got it</button>
+                </div>
+            </div>
+            
+            <!-- end alert INtercept tooltip new flyer-->
+        </div>
+        
+            <span class="reserved-slot footerReservedSlot hide">
+                <img src="/images/main/icons/icon-check-white.svg?v=2026.fn.7.d20" alt=""/>Reserved
+            </span>
+
+            <div tabindex="0">
+                <span class="invisible-text">Your selected service. </span>
+
+                <div class="st--footer__info footerDelivery">
+                    <span>
+                        <span class="sp_footer-icon">
+                            <img class="icon-delivery" src="/images/main/actions/superc/icon-notification-delivery-dark.svg?v=2026.fn.7.d20" alt=""/>
+                        </span>
+                         <span>
+                             <span class="nowrap">
+                                Delivery to
+                            </span>
+                            &nbsp;<strong
+                                 class="mt-1">G6P 7H4</strong>
+                        </span>
+                    </span>
+                </div>
+                <div class="st--footer__info footerPickup">
+                    <span>
+                        <span class="sp_footer-icon">
+                            <img class="icon-pickup" src="/images/main/actions/superc/icon-notification-grocery-dark.svg?v=2026.fn.7.d20" alt=""/>
+                        </span>
+                        <span>
+                            <span class="nowrap">
+                            Pickup at&nbsp;
+                        </span>
+                            <strong>
+                                <span class="sp_footer-store-name">
+                                    Metro Plus ETS 1230 Rue Notre-Dame Ouest Montréal, QC H3C 1K6
+                                </span>
+                            </strong>
+                        </span>
+                    </span>
+                </div>
+                <div class="st--footer__info">
+                    <span>
+                        <span class="sp_footer-icon">
+                            <img class="icon-timeslot" src="/images/main/icons/clock.svg?v=2026.fn.7.d20" alt=""/>
+                        </span>
+                        <span>
+                            <span class="nowrap">Timeslot</span>&nbsp;
+                            <strong><span class="infoTimeslotDay"> </span>
+                                <span class="infoTimeslotFrom hide">&nbsp;at </span>
+                                <span class="infoTimeslotTime hide">  -</span></strong>
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+        
+        <button type="button" class="medium cta-secondary w-100 seeAllTimeslot hide">See all timeslots</button>
+        <div class="sp_footer_actions captcha-visible">
+            <button id="confirmTimeslot" type="button" class="medium cta-primary" aria-label="Confirm my timeslot"
+                    disabled>Confirm</button>
+            <button id="chooseLater" type="button" class="medium cta-secondary chooseLater" aria-label="Choose later">Choose later</button>
+        </div>
+    </div>
+
+    
+    
+    
+    

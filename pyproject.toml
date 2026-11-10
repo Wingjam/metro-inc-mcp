@@ -1,0 +1,35 @@
+[project]
+name = "metro-inc-mcp"
+version = "0.2.0"
+description = "Unofficial MCP server for Metro inc. banners (Super C, Metro, Food Basics, Jean Coutu). Not affiliated with METRO inc."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+    "mcp[cli]>=2",
+    "curl_cffi>=0.17",
+    "selectolax>=1",
+]
+
+[project.scripts]
+metro-inc-mcp = "metro_inc_mcp.__main__:main"
+
+[project.optional-dependencies]
+login = [
+    "playwright>=1.65.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/metro_inc_mcp"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]

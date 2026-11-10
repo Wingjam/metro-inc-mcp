@@ -1,0 +1,128 @@
+
+
+    <div id="ttsModification">
+        
+    </div>
+
+    <div class="st--header">
+        <h2>
+            Choisissez votre plage horaire
+        </h2>
+        <button id="closePanelModifierChoixModal" data-remodal-action="close" class="modal__close focusable">
+            <img src="/images/main/actions/close-x.svg?v=2026.fn.7.d20" alt="">
+            <span class="invisible-text">Fermer la fenêtre modale contextuelle</span>
+        </button>
+    </div>
+
+    <div class="st--main choice-modification"
+         data-express-item-entry="0">
+
+        
+    <form class="st__postalCode" novalidate>
+        <label for="deliveryPostalCode">Code postal</label>
+        <div class="st__postalCode__inputs">
+            <div class="postalCode_input">
+                <input id="deliveryPostalCode" placeholder="Code postal" type="text" value="G6P 7H4">
+                <button type="button" class="postalCode_clear">
+                    <img src="/images/main/actions/close-x.svg?v=2026.fn.7.d20" alt="Effacer le champ de saisie du code postal"/>
+                </button>
+            </div>
+            <button type="button" class="postalCode_submit_delivery cta-primary">Soumettre</button>
+            <button type="submit" class="postalCode_submit cta-primary" disabled="disabled">Soumettre</button>
+            <button type="button" class="postalCode_submit_pickup_list cta-primary hide">Soumettre</button>
+        </div>
+    </form>
+
+        <div class="st__serviceType">
+            <input type="radio" id="deliveryRadioFromUpdatePanel" name="radioServiceTypeFromUpdatePanel" value="HOME_DELIVERY" hidden
+                   checked="checked">
+            <label for="deliveryRadioFromUpdatePanel" tabindex="0" class="medium cta-primary dark-mode delivery--toggle">Livraison</label>
+            <input type="radio" id="pickUpRadioFromUpdatePanel" name="radioServiceTypeFromUpdatePanel" value="PICK_UP_IN_STORE" hidden>
+            <label for="pickUpRadioFromUpdatePanel" tabindex="0" class="medium cta-primary dark-mode">Cueillette</label>
+            <input type="hidden" name="serviceTypeSelected">
+        </div>
+        
+    <div class="service-box_wrapper">
+        <div class="dropdown--list-stores list-pickup-from-panel hide">
+            <span class="store-choice">Votre magasin</span>
+            <div class="action__select-variant">
+                <button class="select-variant select-button" name="select_variant_element"
+                        role="combobox"
+                        aria-label="select button"
+                        id="pickUpStoreSelect_0"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="select-dropdown">
+                    <p>
+                        <span class="title-choice">Choississez votre épicerie (4 options)</span>
+                        <span class="selected-value main-choice">Super C Victoriaville - 601, Rue Jutras Est</span>
+                    </p>
+
+                    <img class="arrow" src="/images/main/actions/toggle-down.svg?v=2026.fn.7.d20" alt="">
+                </button>
+
+                <ul class="select-dropdown" role="listbox">
+                    <li class="select-dropdown__item"
+                        value="274"
+                        id="pickUpStoreSelect_0"
+                        name="Super C Victoriaville - 601, Rue Jutras Est"
+                        role="option" data-store-id="274" data-store-name="Super C Victoriaville" data-store-address="601, Rue Jutras Est">
+                        <button class="choice-container-store">
+                            <span>Super C Victoriaville 601, Rue Jutras Est</span>
+                        </button>
+                    </li>
+                    <li class="select-dropdown__item"
+                        value="6167"
+                        id="pickUpStoreSelect_1"
+                        name="Super C St-Nicéphore - 4280 boulevard St-Joseph"
+                        role="option" data-store-id="6167" data-store-name="Super C St-Nicéphore" data-store-address="4280 boulevard St-Joseph">
+                        <button class="choice-container-store">
+                            <span>Super C St-Nicéphore 4280 boulevard St-Joseph</span>
+                        </button>
+                    </li>
+                    <li class="select-dropdown__item"
+                        value="262"
+                        id="pickUpStoreSelect_2"
+                        name="Super C Drummondville - 565, Boul. Saint-Joseph"
+                        role="option" data-store-id="262" data-store-name="Super C Drummondville" data-store-address="565, Boul. Saint-Joseph">
+                        <button class="choice-container-store">
+                            <span>Super C Drummondville 565, Boul. Saint-Joseph</span>
+                        </button>
+                    </li>
+                    <li class="select-dropdown__item"
+                        value="4888"
+                        id="pickUpStoreSelect_3"
+                        name="Super C Thetford Mines - 240, Boul. Frontenac Est"
+                        role="option" data-store-id="4888" data-store-name="Super C Thetford Mines" data-store-address="240, Boul. Frontenac Est">
+                        <button class="choice-container-store">
+                            <span>Super C Thetford Mines 240, Boul. Frontenac Est</span>
+                        </button>
+                    </li>
+                </ul>
+
+                <select class="select-store select-variant hide" id="preSelectedPickupStores" style="width:100%">
+                    <option id="pickUpStoreSelect_0"
+                            value="274"
+                            data-init-timeslot="true" data-store-id="274" data-store-name="Super C Victoriaville" data-store-address="601, Rue Jutras Est" checked="checked">Super C Victoriaville</option>
+                    <option id="pickUpStoreSelect_1"
+                            value="6167"
+                            data-init-timeslot="false" data-store-id="6167" data-store-name="Super C St-Nicéphore" data-store-address="4280 boulevard St-Joseph">Super C St-Nicéphore</option>
+                    <option id="pickUpStoreSelect_2"
+                            value="262"
+                            data-init-timeslot="false" data-store-id="262" data-store-name="Super C Drummondville" data-store-address="565, Boul. Saint-Joseph">Super C Drummondville</option>
+                    <option id="pickUpStoreSelect_3"
+                            value="4888"
+                            data-init-timeslot="false" data-store-id="4888" data-store-name="Super C Thetford Mines" data-store-address="240, Boul. Frontenac Est">Super C Thetford Mines</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+        
+    </div>
+    <div class="st--footer">
+
+        <div class="sp_footer_actions">
+            <button id="confirmService" type="button" class="medium cta-primary" aria-label="Confirmer">Confirmer</button>
+        </div>
+    </div>
