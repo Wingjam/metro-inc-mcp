@@ -1,6 +1,8 @@
 # metro-inc-mcp
 
-Unofficial [MCP](https://modelcontextprotocol.io) server for the online stores of [Metro inc.](https://corpo.metro.ca) banners: the grocery sites [Super C](https://www.superc.ca), [Metro](https://www.metro.ca) and [Food Basics](https://www.foodbasics.ca), and the pharmacy [Jean Coutu](https://www.jeancoutu.com). It lets an AI assistant search products, manage your cart and choose a pickup store, in French or English.
+Unofficial [MCP](https://modelcontextprotocol.io) server for the online stores of [Metro inc.](https://corpo.metro.ca) banners: the grocery sites [Super C](https://www.superc.ca), [Metro](https://www.metro.ca) and [Food Basics](https://www.foodbasics.ca), and the pharmacy [Jean Coutu](https://www.jeancoutu.com). It lets an AI assistant search products, manage your cart and favorites, choose a pickup store and book a pickup timeslot, in French or English.
+
+**En français :** serveur MCP non officiel pour l'épicerie en ligne de Super C, Metro et Food Basics, et la pharmacie Jean Coutu. Il permet à un assistant IA (Claude, Kiro, etc.) de chercher des produits et leurs prix, de remplir votre panier, de gérer vos favoris, de choisir votre magasin de cueillette et de réserver une plage horaire. Vous terminez la commande et le paiement sur le site.
 
 > **Unofficial.** Not affiliated with, endorsed by or supported by METRO inc. or any of its banners. It uses the websites' undocumented endpoints, which can change at any time. Personal use only; keep request volume low. Checkout and payment are not supported: you finish the order on the website.
 
