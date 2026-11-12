@@ -28,6 +28,9 @@ The same Moi ID login works for all of them; each banner has its own cart. Brune
 | `update_cart_quantity` | set the quantity of a product in the cart | yes |
 | `remove_from_cart` | remove a product | yes |
 | `clear_cart` | empty the cart in one call; returns what was removed so it can be added back | yes |
+| `view_favorites` | the account's saved favorites ("Mes favoris"), with prices and saved quantities | yes |
+| `add_to_favorites` | save one or more products to the favorites | yes |
+| `remove_from_favorites` | remove a product from the favorites | yes |
 | `find_stores` | pickup stores near a postal code | no |
 | `get_timeslots` | pickup days and timeslots of a store (read only) | no |
 | `set_pickup_store` | choose the cart's pickup store; also removes a booked timeslot | yes |
@@ -35,11 +38,45 @@ The same Moi ID login works for all of them; each banner has its own cart. Brune
 
 Read tools take an optional `language` (`fr` or `en`). French and English use separate search indexes, so search in the user's language. On English-only banners the argument is ignored.
 
-Not supported yet: home delivery, coupons.
+The sites keep several copies of the favorites list that are not always in sync: after a change, some reads still show the old list (seen for more than a day on removed favorites). The list on the website itself was correct.
+
+Not supported yet: home delivery, coupons, purchase history.
 
 ## Run
 
 Requires [uv](https://docs.astral.sh/uv/).
+
+### Without cloning
+
+`uvx` downloads the server from GitHub and runs it:
+
+```sh
+METRO_BANNER=superc uvx --from git+https://github.com/Wingjam/metro-inc-mcp metro-inc-mcp   # stdio
+uvx --from "metro-inc-mcp[login] @ git+https://github.com/Wingjam/metro-inc-mcp" metro-inc-mcp login
+```
+
+Example MCP client config (Kiro `.kiro/settings/mcp.json`, Claude Desktop, ...), one entry per banner:
+
+```json
+{
+  "mcpServers": {
+    "superc": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/Wingjam/metro-inc-mcp", "metro-inc-mcp"],
+      "env": { "METRO_BANNER": "superc" }
+    },
+    "metro": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/Wingjam/metro-inc-mcp", "metro-inc-mcp"],
+      "env": { "METRO_BANNER": "metro" }
+    }
+  }
+}
+```
+
+`uvx` caches the build: run `uvx --refresh --from git+https://github.com/Wingjam/metro-inc-mcp metro-inc-mcp login --help` to get the latest version, or pin one with `git+https://github.com/Wingjam/metro-inc-mcp@<commit or tag>`.
+
+### From a clone
 
 ```sh
 uv sync
@@ -48,7 +85,7 @@ uv run pytest # offline parser tests (saved pages, no network)
 uv run ruff check # lint (settings in pyproject.toml)
 ```
 
-Example MCP client config (Kiro `.kiro/settings/mcp.json`, Claude Desktop, ...), one entry per banner:
+Example MCP client config for a clone, one entry per banner:
 
 ```json
 {
@@ -80,7 +117,7 @@ Example MCP client config (Kiro `.kiro/settings/mcp.json`, Claude Desktop, ...),
 
 ## Logging in
 
-The sites use Moi ID (Azure AD B2C) with a captcha, so the server never types your password. The Moi ID session lasts less than a day, so expect to log in about once a day.
+The sites use Moi ID (Azure AD B2C) with a captcha, so the server never types your password. The Moi ID session ends after about 30 to 45 minutes without use, so expect to log in again when you come back to it.
 
 The easy way needs Google Chrome:
 

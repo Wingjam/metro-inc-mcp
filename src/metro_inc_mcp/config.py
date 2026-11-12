@@ -24,6 +24,13 @@ class SitePaths:
     autocomplete: str
     cart: str
     service: str  # prefix of the service-and-timeslot endpoints
+    favorites: str  # prefix of the favorites endpoints (`var cartStarterUrl` on every page)
+    # Where the favorites list is read. Grocery banners: the `getFavorites` fragment. Jean Coutu has no such
+    # endpoint (404), only the account page.
+    favorites_list: str = ""
+
+    def favorites_list_path(self) -> str:
+        return self.favorites_list or f"{self.favorites}/getFavorites"
 
 
 @dataclass(frozen=True)
@@ -56,10 +63,10 @@ def _french_english(search_fr: str, search_en: str) -> dict[str, SitePaths]:
     return {
         "fr": SitePaths(search=search_fr, search_page=f"{search_fr}-page-{{page}}",
                         autocomplete="/autocompleteSearchProducts", cart="/mon-panier",
-                        service="/service-and-timeslot"),
+                        service="/service-and-timeslot", favorites="/cart-starter"),
         "en": SitePaths(search=search_en, search_page=f"{search_en}-page-{{page}}",
                         autocomplete="/en/autocompleteSearchProducts", cart="/en/my-cart",
-                        service="/en/service-and-timeslot"),
+                        service="/en/service-and-timeslot", favorites="/en/cart-starter"),
     }
 
 
@@ -76,17 +83,19 @@ BANNERS = {
         key="foodbasics", name="Food Basics", base_url="https://www.foodbasics.ca",
         paths={"en": SitePaths(search="/search", search_page="/search-page-{page}",
                                autocomplete="/autocompleteSearchProducts", cart="/my-cart",
-                               service="/service-and-timeslot")},
+                               service="/service-and-timeslot", favorites="/cart-starter")},
     ),
     "jeancoutu": BannerConfig(
         key="jeancoutu", name="Jean Coutu", base_url="https://www.jeancoutu.com",
         paths={
             "fr": SitePaths(search="/magasiner/recherche", search_page="/magasiner/recherche-page-{page}",
                             autocomplete="/magasiner/autocompleteSearchProducts", cart="/magasiner/mon-panier",
-                            service="/magasiner/service-and-timeslot"),
+                            service="/magasiner/service-and-timeslot", favorites="/magasiner/cart-starter",
+                            favorites_list="/magasiner/mon-compte/mes-favoris"),
             "en": SitePaths(search="/en/shop/search", search_page="/en/shop/search-page-{page}",
                             autocomplete="/en/shop/autocompleteSearchProducts", cart="/en/shop/my-cart",
-                            service="/en/shop/service-and-timeslot"),
+                            service="/en/shop/service-and-timeslot", favorites="/en/shop/cart-starter",
+                            favorites_list="/en/shop/my-account/my-favourites"),
         },
         login_path="/magasiner/b2c-login",
         kind="pharmacy",

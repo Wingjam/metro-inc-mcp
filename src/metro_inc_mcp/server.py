@@ -17,12 +17,15 @@ from .cart import CartService
 from .client import GroceryClient
 from .config import Language, Settings
 from .errors import GroceryError
+from .favorites import FavoritesService
 from .models import (
     AddToCartResult,
     BookTimeslotResult,
     Cart,
     CartItem,
     ClearCartResult,
+    FavoriteList,
+    FavoritesChange,
     QuickSearchResult,
     RemoveResult,
     SearchResult,
@@ -68,6 +71,7 @@ Unofficial access to the {_BANNER.name} ({_SITE}) {_BANNER.kind} website, on the
 - Use search_products to browse or compare (about 42 products per page).
 - Cart tools use product codes from search results. add_to_cart takes several products at once.
 - clear_cart empties the whole cart in one call: confirm with the user first. It returns what was removed.
+- view_favorites lists the user's saved products; add their codes to the cart with add_to_cart.
 - Products sold by weight (is_weighted / approximate) are added by count (units or trays); the price is an estimate.
 - view_cart shows the pickup store. If an add fails because no store is chosen, use find_stores then
   set_pickup_store (ask the user first: it changes the store for the whole cart, which can change prices).
@@ -88,6 +92,7 @@ class _State:
     client: GroceryClient | None = None
     auth: AuthManager | None = None
     cart: CartService | None = None
+    favorites: FavoritesService | None = None
     service: ServiceContextService | None = None
 
 
@@ -108,6 +113,12 @@ def get_cart() -> CartService:
     if _State.cart is None:
         _State.cart = CartService(get_client(), _auth())
     return _State.cart
+
+
+def get_favorites() -> FavoritesService:
+    if _State.favorites is None:
+        _State.favorites = FavoritesService(get_client(), _auth())
+    return _State.favorites
 
 
 def get_service() -> ServiceContextService:
@@ -204,6 +215,39 @@ async def clear_cart() -> ClearCartResult:
     """
     try:
         return await get_cart().clear()
+    except GroceryError as e:
+        raise ToolError(str(e)) from e
+
+
+@mcp.tool(annotations=READ_ONLY)
+async def view_favorites(language: Lang = None) -> FavoriteList:
+    """Show the user's saved favorite products ("Mes favoris") with prices and saved quantities.
+
+    To put favorites in the cart, pass their codes and quantities to add_to_cart. The site does not always show
+    the latest version of this list: recent changes may be missing and removed favorites may still appear.
+    """
+    try:
+        return await get_favorites().view(language)
+    except GroceryError as e:
+        raise ToolError(str(e)) from e
+
+
+@mcp.tool(annotations=IDEMPOTENT_WRITE)
+async def add_to_favorites(
+    product_codes: Annotated[list[ProductCode], Field(min_length=1, max_length=50, description="Products to save")],
+) -> FavoritesChange:
+    """Save products to the user's favorites list. Adding a product that is already a favorite changes nothing."""
+    try:
+        return await get_favorites().add(product_codes)
+    except GroceryError as e:
+        raise ToolError(str(e)) from e
+
+
+@mcp.tool(annotations=DESTRUCTIVE)
+async def remove_from_favorites(product_code: ProductCode) -> FavoritesChange:
+    """Remove a product from the user's favorites list."""
+    try:
+        return await get_favorites().remove(product_code)
     except GroceryError as e:
         raise ToolError(str(e)) from e
 

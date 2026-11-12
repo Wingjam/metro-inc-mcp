@@ -101,6 +101,22 @@ class RemoveResult(BaseModel):
     cart_empty: bool | None = None
 
 
+class Favorite(Product):
+    quantity: int = Field(1, description="Quantity saved with the favorite (used when adding it to the cart)")
+    available: bool | None = Field(None, description="False: out of stock at the pickup store")
+
+
+class FavoriteList(BaseModel):
+    language: str
+    favorites: list[Favorite]
+    note: str = Field(description="How fresh the list is")
+
+
+class FavoritesChange(BaseModel):
+    changed: list[str] = Field(description="Product codes sent to the site (it answered OK)")
+    note: str
+
+
 class ClearCartResult(BaseModel):
     removed: list[CartItem] = Field(description="What was in the cart: pass it to add_to_cart to put it back")
     removed_names: dict[str, str] = Field(default_factory=dict, description="Product name by code, for the user")

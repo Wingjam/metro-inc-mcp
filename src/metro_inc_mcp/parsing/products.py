@@ -8,7 +8,7 @@ from decimal import Decimal
 
 from selectolax.lexbor import LexborHTMLParser, LexborNode
 
-from ..models import Product
+from ..models import Favorite, Product
 from .prices import clean_text, parse_amount
 
 _TOTAL_SEARCH = re.compile(r"(\d[\d\s\u00a0,]*)\s*(?:résultats?|results?)\b")
@@ -89,6 +89,22 @@ def parse_search_page(html: str, base_url: str) -> tuple[int | None, list[Produc
         m = _TOTAL_SEARCH.search(tree.body.text(separator=" ") if tree.body else html)
         total = int(re.sub(r"\D", "", m.group(1))) if m else None
     return total, products
+
+
+def parse_favorites(html: str, base_url: str) -> list[Favorite]:
+    """`<cart-starter>/getFavorites` fragment: one `.product-tile-cart-starter` (a default-product-tile) per favorite,
+    grouped by aisle, with `data-qty` (saved quantity) and `data-is-inactive`. An empty list has no tile."""
+    tree = LexborHTMLParser(html)
+    favorites, seen = [], set()
+    for node in tree.css(".product-tile-cart-starter[data-product-code]"):
+        p = parse_tile(node, base_url)
+        if not p.code or p.code in seen:
+            continue
+        seen.add(p.code)
+        inactive = node.attributes.get("data-is-inactive")
+        favorites.append(Favorite(**p.model_dump(), quantity=_int(node.attributes.get("data-qty")) or 1,
+                                  available=None if inactive is None else inactive != "true"))
+    return favorites
 
 
 def parse_autocomplete(html: str, base_url: str) -> tuple[int | None, list[str], list[Product]]:
