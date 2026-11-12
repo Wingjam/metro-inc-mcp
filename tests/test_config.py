@@ -81,3 +81,22 @@ def test_every_banner_has_https_base_url():
 )
 def test_autocomplete_total_formats(text, total):
     assert parse_autocomplete(f"<html><body><a>{text}</a></body></html>", "https://www.metro.ca")[0] == total
+
+
+def test_network_error_is_site_unreachable(monkeypatch):
+    import asyncio
+
+    from curl_cffi.requests.exceptions import Timeout
+
+    from metro_inc_mcp.client import GroceryClient
+    from metro_inc_mcp.errors import SiteUnreachable
+
+    monkeypatch.setenv("METRO_BANNER", "superc")
+    client = GroceryClient(Settings.from_env())
+
+    async def fail(*args, **kwargs):
+        raise Timeout("Operation timed out after 30001 milliseconds")
+
+    monkeypatch.setattr(client.session, "request", fail)
+    with pytest.raises(SiteUnreachable, match="superc.ca did not answer"):
+        asyncio.run(client.request("GET", "/"))

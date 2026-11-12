@@ -39,7 +39,7 @@ class AuthManager:
     def __init__(self, client: GroceryClient, cookies_file: Path | None) -> None:
         self.client = client
         self.cookies_file = cookies_file
-        self._loaded = False
+        self._loaded_mtime: int | None = None  # st_mtime_ns of the cookie file when it was last read or written
         self._authenticated = False
         self._lock = asyncio.Lock()
 
@@ -59,11 +59,25 @@ class AuthManager:
             raise NotConfigured("METRO_COOKIES_FILE must be a JSON list of cookies or a Playwright storageState")
         return raw, cookies
 
+    def _file_mtime(self) -> int | None:
+        try:
+            return self.cookies_file.stat().st_mtime_ns if self.cookies_file else None
+        except OSError:
+            return None
+
     def _load(self) -> None:
-        if self._loaded:
+        """Load the Moi ID cookies into the session, again whenever the file changed since the last read.
+
+        `metro-inc-mcp login` rewrites the file while servers are running: without the reload they would keep
+        the expired SSO cookie in memory and report an expired session.
+        """
+        mtime = self._file_mtime()
+        if self._loaded_mtime is not None and mtime == self._loaded_mtime:
             return
         _, cookies = self._read_file()
         jar = self.client.session.cookies
+        for c in [c for c in jar.jar if _is_sso(c.domain)]:
+            jar.delete(c.name, domain=c.domain, path=c.path)
         n = 0
         for c in cookies:
             domain = c.get("domain", "")
@@ -73,7 +87,7 @@ class AuthManager:
         if n == 0:
             raise AuthExpired("The cookie file has no Moi ID (*.moiid.ca) cookies.")
         log.info("loaded %d Moi ID cookies", n)
-        self._loaded = True
+        self._loaded_mtime = mtime
 
     def _save(self) -> None:
         """Write the (possibly rolled) Moi ID cookies back, keeping the file format. Atomic, mode 600."""
@@ -99,6 +113,7 @@ class AuthManager:
         except BaseException:
             Path(tmp).unlink(missing_ok=True)
             raise
+        self._loaded_mtime = self._file_mtime()  # our own write: the jar already has these values
         log.info("Moi ID cookies refreshed in the cookie file")
 
     # --- session -----------------------------------------------------------------------------

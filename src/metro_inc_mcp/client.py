@@ -9,9 +9,10 @@ from typing import Any
 from urllib.parse import urlparse
 
 from curl_cffi.requests import AsyncSession, Response
+from curl_cffi.requests.exceptions import RequestException
 
 from .config import Settings
-from .errors import CloudflareBlocked, RateLimited, SiteMaintenance, UpstreamError
+from .errors import CloudflareBlocked, RateLimited, SiteMaintenance, SiteUnreachable, UpstreamError
 
 log = logging.getLogger(__name__)
 
@@ -56,7 +57,12 @@ class GroceryClient:
         async with self._lock:
             for attempt in range(len(RETRY_DELAYS_429) + 1):
                 await self._wait_turn()
-                resp = await self.session.request(method, url, headers=headers, **kwargs)
+                try:
+                    resp = await self.session.request(method, url, headers=headers, **kwargs)
+                except RequestException as e:  # timeout, DNS, connection reset: no HTTP answer at all
+                    self._last_request = time.monotonic()
+                    log.warning("%s %s failed: %s", method, path, type(e).__name__)
+                    raise SiteUnreachable(self.site) from e
                 self._last_request = time.monotonic()
                 log.debug("%s %s -> %s", method, path, resp.status_code)
                 if resp.status_code != 429:

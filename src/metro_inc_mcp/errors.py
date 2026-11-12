@@ -29,6 +29,14 @@ class SiteMaintenance(GroceryError):
         )
 
 
+class SiteUnreachable(GroceryError):
+    def __init__(self, site: str) -> None:
+        super().__init__(
+            f"{site} did not answer (timeout or connection error). A change you asked for may or may not have been "
+            "applied: check with view_cart before retrying."
+        )
+
+
 class SiteChanged(GroceryError):
     def __init__(self, what: str) -> None:
         super().__init__(f"Could not parse the page ({what}). The site layout may have changed.")
